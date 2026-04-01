@@ -23,19 +23,34 @@ export function renderThreads(threads) {
     return;
   }
 
-  el.innerHTML = threads.map(t => {
-    const date = t.last_post_at ? formatDate(t.last_post_at) : '—';
-    const firstDate = t.first_post_at ? formatDate(t.first_post_at) : '—';
-    return `
-      <div class="thread-card" onclick="window.router.goToThreadDetail(${t.id})">
-        <div class="thread-title">${escHtml(t.name)}</div>
-        <div class="thread-meta">
-          <span class="author">✍ ${escHtml(t.author || 'Anonimo')}</span>
-          <span class="badge">${t.post_count} ${t.post_count === 1 ? 'messaggio' : 'messaggi'}</span>
-          <span class="date">📅 ${firstDate} → ${date}</span>
-        </div>
-      </div>`;
-  }).join('');
+  el.innerHTML = `
+    <table class="threads-table">
+      <thead>
+        <tr>
+          <th class="col-title">Titolo</th>
+          <th class="col-author">Autore</th>
+          <th class="col-posts">Messaggi</th>
+          <th class="col-dates">Data creazione</th>
+          <th class="col-dates">Ultimo messaggio</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${threads.map(t => {
+          const date = t.last_post_at ? formatDate(t.last_post_at) : '—';
+          const firstDate = t.first_post_at ? formatDate(t.first_post_at) : '—';
+          return `
+            <tr class="thread-row" onclick="window.router.goToThreadDetail(${t.id})" style="cursor: pointer;">
+              <td class="col-title"><strong>${escHtml(t.name)}</strong></td>
+              <td class="col-author">${escHtml(t.author || 'Anonimo')}</td>
+              <td class="col-posts">${t.post_count}</td>
+              <td class="col-dates">${firstDate}</td>
+              <td class="col-dates">${date}</td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
 }
 
 /**

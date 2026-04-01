@@ -319,86 +319,92 @@ h1 {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* ── THREAD LIST ── */
+/* ── THREAD LIST (TABELLARE) ── */
 .thread-list { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0.7rem; 
+  display: block;
+  overflow-x: auto;
 }
 
-.thread-card {
-  background: linear-gradient(135deg, rgba(245,234,216,.95) 0%, rgba(235,220,190,.95) 100%);
+.threads-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: linear-gradient(135deg, rgba(245,234,216,.98) 0%, rgba(235,220,190,.98) 100%);
   border: 1px solid var(--border);
-  border-left: 5px solid var(--gold-primary);
-  border-radius: 4px;
-  padding: 1.1rem 1.3rem;
-  cursor: pointer;
-  transition: all var(--transition);
   box-shadow: 0 3px 12px var(--shadow);
-  position: relative;
-  overflow: hidden;
+  font-size: 0.95rem;
 }
 
-.thread-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(212,175,55,.05), transparent 80%);
-  pointer-events: none;
+.threads-table thead {
+  background: linear-gradient(180deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.1) 100%);
+  border-bottom: 2px solid var(--gold-primary);
 }
 
-.thread-card:hover {
-  transform: translateX(5px);
-  box-shadow: 0 6px 20px var(--shadow);
-  border-left-color: var(--crimson);
+.threads-table th {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 1rem;
+  text-align: left;
+  letter-spacing: 0.05em;
+  border-right: 1px solid var(--border);
 }
 
-.thread-card:active {
+.threads-table th:last-child {
+  border-right: none;
+}
+
+.threads-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition);
+}
+
+.threads-table tbody tr:hover {
+  background: rgba(212,175,55,0.1);
   transform: translateX(3px);
 }
 
-.thread-card.active { 
-  border-left-color: var(--crimson); 
-  background: rgba(245,234,216,1); 
-  box-shadow: 0 6px 20px rgba(122,28,28,.25);
+.threads-table tbody tr:last-child {
+  border-bottom: none;
 }
 
-.thread-title {
-  font-family: 'Cinzel', serif; 
-  font-size: 1.1rem; 
-  font-weight: 700;
-  color: var(--ink); 
-  line-height: 1.4; 
-  margin-bottom: 0.5rem;
+.threads-table td {
+  padding: 0.8rem 1rem;
+  color: var(--ink);
+  border-right: 1px solid var(--border);
 }
 
-.thread-meta {
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: 0.8rem 1.4rem;
-  font-size: 0.9rem; 
+.threads-table td:last-child {
+  border-right: none;
+}
+
+.col-title {
+  font-weight: 600;
+  color: var(--ink);
+  max-width: 350px;
+  word-wrap: break-word;
+}
+
+.col-author {
+  font-style: italic;
   color: var(--ink-faded);
+  width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.thread-meta .author { 
-  font-style: italic; 
+.col-posts {
+  text-align: center;
+  font-weight: 600;
+  width: 100px;
+  color: var(--crimson);
 }
 
-.thread-meta .badge {
-  font-family: 'Cinzel', serif; 
-  font-size: 0.7rem; 
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--crimson), #9b2424); 
-  color: var(--parchment);
-  padding: 0.25rem 0.7rem; 
-  border-radius: 3px; 
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
-}
-
-.thread-meta .date { 
-  opacity: 0.8; 
+.col-dates {
+  color: var(--ink-faded);
+  width: 130px;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 /* ── THREAD EMPTY STATE ── */
@@ -771,17 +777,21 @@ h1 {
     gap: 1rem;
   }
 
-  .thread-card {
-    padding: 0.9rem 1rem;
-  }
-
-  .thread-title {
-    font-size: 1rem;
-  }
-
-  .thread-meta {
-    gap: 0.5rem 1rem;
+  .threads-table {
     font-size: 0.85rem;
+  }
+
+  .threads-table th,
+  .threads-table td {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .col-title {
+    max-width: 200px;
+  }
+
+  .col-author {
+    width: 100px;
   }
 
   /* Detail page mobile */
