@@ -526,13 +526,14 @@ premium-button[size="md"] {
 
 .threads-table tbody tr {
   border-bottom: 1px solid var(--border);
+  border-left: 4px solid transparent;
   transition: all var(--transition);
 }
 
 .threads-table tbody tr:hover {
   background: rgba(232,199,75,0.08);
-  transform: translateX(3px);
-  box-shadow: inset 4px 0 8px rgba(232,199,75,0.1);
+  border-left-color: var(--gold-light);
+  box-shadow: 0 2px 8px rgba(232,199,75,0.15);
 }
 
 .threads-table tbody tr:last-child {
