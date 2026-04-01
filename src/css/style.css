@@ -532,6 +532,7 @@ premium-button[size="md"] {
 .threads-table tbody tr:hover {
   background: rgba(232,199,75,0.08);
   transform: translateX(3px);
+  box-shadow: inset 4px 0 8px rgba(232,199,75,0.1);
 }
 
 .threads-table tbody tr:last-child {
