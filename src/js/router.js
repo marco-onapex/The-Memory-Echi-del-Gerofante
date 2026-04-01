@@ -10,10 +10,10 @@ class Router {
   }
 
   /**
-   * Naviga alla pagina di dettaglio di un thread
+   * Naviga alla pagina di dettaglio di un thread (solo ID)
    */
-  goToThreadDetail(threadId, threadName) {
-    console.log('🔗 Router: navigating to thread', threadId, threadName);
+  goToThreadDetail(threadId) {
+    console.log('🔗 Router: navigating to thread', threadId);
     
     // Salva stato per il back
     this.routeStack.push({
@@ -22,13 +22,13 @@ class Router {
     });
 
     // Cambio view
-    this.switchView('detail', { threadId, threadName });
+    this.switchView('detail', { threadId });
     
     // Aggiorna URL (senza reload)
-    const url = `?thread=${encodeURIComponent(threadId)}&name=${encodeURIComponent(threadName)}`;
+    const url = `?thread=${encodeURIComponent(threadId)}`;
     window.history.pushState(
-      { view: 'detail', threadId, threadName },
-      threadName,
+      { view: 'detail', threadId },
+      'Thread Detail',
       url
     );
   }
@@ -55,8 +55,7 @@ class Router {
   handlePopState(event) {
     if (event.state?.view === 'detail') {
       this.switchView('detail', {
-        threadId: event.state.threadId,
-        threadName: event.state.threadName
+        threadId: event.state.threadId
       });
     } else {
       this.switchView('list');
@@ -104,14 +103,13 @@ class Router {
   restoreFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const threadId = params.get('thread');
-    const threadName = params.get('name');
 
-    if (threadId && threadName) {
-      this.switchView('detail', { threadId, threadName });
+    if (threadId) {
+      this.switchView('detail', { threadId });
       
       // Trigger fetch diretto
       const event = new CustomEvent('thread-detail-view', {
-        detail: { threadId, threadName }
+        detail: { threadId }
       });
       window.dispatchEvent(event);
     }

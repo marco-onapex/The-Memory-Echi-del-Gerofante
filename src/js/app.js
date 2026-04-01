@@ -30,8 +30,8 @@ export async function initApp(config) {
     // Event listener per caricare il detail thread quando richiesto
     window.addEventListener('thread-detail-view', (e) => {
       console.log('📨 Received thread-detail-view event:', e.detail);
-      const { threadId, threadName } = e.detail;
-      renderThreadDetail(threadId, threadName, supabaseClient);
+      const { threadId } = e.detail;
+      renderThreadDetail(threadId, supabaseClient);
     });
     
     console.log('✅ App initialized successfully');

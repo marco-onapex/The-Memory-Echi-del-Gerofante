@@ -27,7 +27,7 @@ export function renderThreads(threads) {
     const date = t.last_post_at ? formatDate(t.last_post_at) : '—';
     const firstDate = t.first_post_at ? formatDate(t.first_post_at) : '—';
     return `
-      <div class="thread-card" onclick="window.router.goToThreadDetail(${t.id}, ${JSON.stringify(t.name).replace(/"/g, '&quot;')})">
+      <div class="thread-card" onclick="window.router.goToThreadDetail(${t.id})">
         <div class="thread-title">${escHtml(t.name)}</div>
         <div class="thread-meta">
           <span class="author">✍ ${escHtml(t.author || 'Anonimo')}</span>
@@ -39,13 +39,12 @@ export function renderThreads(threads) {
 }
 
 /**
- * Renderizza la pagina di dettaglio di un thread.
+ * Renderizza la pagina di dettaglio di un thread (carica il nome dal DB).
  * @param {number} threadId - ID del thread
- * @param {string} threadName - Nome thread
  * @param {Object} supabase - Client Supabase
  */
-export async function renderThreadDetail(threadId, threadName, supabase) {
-  console.log('📄 renderThreadDetail called for thread:', threadId, threadName);
+export async function renderThreadDetail(threadId, supabase) {
+  console.log('📄 renderThreadDetail called for thread:', threadId);
   
   if (!supabase) {
     console.error('❌ Supabase not initialized');
@@ -65,15 +64,11 @@ export async function renderThreadDetail(threadId, threadName, supabase) {
     return;
   }
 
-  titleEl.textContent = threadName;
+  titleEl.textContent = 'Caricamento...';
   metaEl.innerHTML = '<div class="loading">Caricamento...</div>';
   postsEl.innerHTML = '';
 
-  // Aggiorna breadcrumb
-  const breadcrumbEl = document.getElementById('breadcrumb-current');
-  if (breadcrumbEl) {
-    breadcrumbEl.textContent = threadName;
-  }
+  // Breadcrumb sarà aggiornato après caricamento dei dati
 
   try {
     console.log('🔄 Caricamento dettagli thread dal DB...');
@@ -104,6 +99,15 @@ export async function renderThreadDetail(threadId, threadName, supabase) {
     const posts = postsData || [];
     console.log('✅ Messaggi caricati:', posts.length);
     
+    // Aggiorna il titolo dal DB
+    if (threadData?.title) {
+      titleEl.textContent = threadData.title;
+      const breadcrumbEl = document.getElementById('breadcrumb-current');
+      if (breadcrumbEl) {
+        breadcrumbEl.textContent = threadData.title;
+      }
+    }
+
     // Costruisci metadata
     let metaHtml = '<div class="thread-detail-meta">';
     if (threadData) {
