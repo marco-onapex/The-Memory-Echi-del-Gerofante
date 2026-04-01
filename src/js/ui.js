@@ -76,6 +76,8 @@ export async function renderThreadDetail(threadId, threadName, supabase) {
   }
 
   try {
+    console.log('🔄 Caricamento dettagli thread dal DB...');
+    
     // Carica i dettagli del thread
     const { data: threadData, error: threadError } = await supabase
       .from('threads_view')
@@ -83,18 +85,24 @@ export async function renderThreadDetail(threadId, threadName, supabase) {
       .eq('id', threadId)
       .single();
 
+    console.log('📦 Thread data:', { data: threadData, error: threadError });
+    
     if (threadError) throw threadError;
 
     // Carica tutti i messaggi del thread
+    console.log('🔄 Caricamento messaggi...');
     const { data: postsData, error: postsError } = await supabase
       .from('posts')
       .select('*')
       .eq('thread_id', threadId)
       .order('posted_at', { ascending: true });
 
+    console.log('📦 Posts data:', { data: postsData, error: postsError });
+    
     if (postsError) throw postsError;
 
     const posts = postsData || [];
+    console.log('✅ Messaggi caricati:', posts.length);
     
     // Costruisci metadata
     let metaHtml = '<div class="thread-detail-meta">';
@@ -143,8 +151,11 @@ export async function renderThreadDetail(threadId, threadName, supabase) {
         </div>
         <div class="post-content">${sanitizeHtml(p.content)}</div>
       </div>`).join('');
+    
+    console.log('✅ Thread detail renderizzato correttamente');
   } catch (err) {
-    console.error('Errore caricamento thread:', err);
+    console.error('❌ Errore caricamento thread:', err);
+    console.error('Stack:', err.stack);
     postsEl.innerHTML = `<div class="error">❌ Errore: ${escHtml(err.message)}</div>`;
     metaEl.innerHTML = '';
   }
