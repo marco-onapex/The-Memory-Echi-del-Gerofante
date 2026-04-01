@@ -46,24 +46,36 @@
     <main class="main-content">
       <!-- Filters -->
       <div class="filters-bar">
-    <div class="filter-group" style="flex:2 1 260px;">
-      <label>🔍 Ricerca parola chiave</label>
-      <input id="f-keyword" type="text" placeholder="Cerca nel titolo o nel testo..." />
-    </div>
-    <div class="filter-group">
-      <label>✍ Autore</label>
-      <input id="f-author" type="text" placeholder="Nome utente..." />
-    </div>
-    <div class="filter-group">
-      <label>📅 Dal</label>
-      <input id="f-date-from" type="date" />
-    </div>
-    <div class="filter-group">
-      <label>📅 Al</label>
-      <input id="f-date-to" type="date" />
-    </div>
-    <button class="btn-search" onclick="window.search()">Cerca</button>
-  </div>
+        <premium-input 
+          id="f-keyword"
+          label="🔍 Ricerca parola chiave"
+          placeholder="Cerca nel titolo o nel testo..."
+          icon="🔎"
+        ></premium-input>
+        
+        <premium-input 
+          id="f-author"
+          label="✍ Autore"
+          placeholder="Nome utente..."
+          icon="👤"
+        ></premium-input>
+        
+        <premium-date-input 
+          id="f-date-from"
+          label="📅 Dal"
+          icon="📅"
+        ></premium-date-input>
+        
+        <premium-date-input 
+          id="f-date-to"
+          label="📅 Al"
+          icon="📅"
+        ></premium-date-input>
+        
+        <premium-button variant="primary" size="md" onclick="window.search()">
+          🔍 Cerca
+        </premium-button>
+      </div>
 
   <!-- Stats -->
   <div class="stats-bar">

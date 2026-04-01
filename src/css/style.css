@@ -278,6 +278,22 @@ h1 {
   background: rgba(45,45,45,.9);
 }
 
+/* ── WEB COMPONENTS IN FILTERS ── */
+premium-input,
+premium-date-input {
+  flex: 1 1 160px;
+  min-width: 140px;
+}
+
+premium-button {
+  align-self: flex-end;
+  margin-bottom: 0;
+}
+
+premium-button[size="md"] {
+  min-width: 140px;
+}
+
 .btn-search {
   font-family: 'Cinzel', serif; 
   font-size: 0.85rem; 
