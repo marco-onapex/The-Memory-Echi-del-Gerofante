@@ -106,8 +106,8 @@ export async function renderThreadDetail(threadId, supabase) {
     console.log('✅ Messaggi caricati:', posts.length);
     
     // Aggiorna il titolo dal DB
-    if (threadData?.title) {
-      titleEl.textContent = threadData.title;
+    if (threadData?.name) {
+      titleEl.textContent = threadData.name;
       console.log('📝 Title updated:', titleEl.textContent);
       console.log('🎨 Title element:', {
         id: titleEl.id,
@@ -117,7 +117,7 @@ export async function renderThreadDetail(threadId, supabase) {
       });
       const breadcrumbEl = document.getElementById('breadcrumb-current');
       if (breadcrumbEl) {
-        breadcrumbEl.textContent = threadData.title;
+        breadcrumbEl.textContent = threadData.name;
         console.log('🔤 Breadcrumb updated:', breadcrumbEl.textContent);
       }
     }
