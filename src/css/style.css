@@ -439,6 +439,16 @@ premium-button[size="md"] {
   transform: translateY(0);
 }
 
+/* ── INFO PANEL (UNIFIED BOX) ── */
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 12px var(--shadow);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
 /* ── STATS BAR ── */
 .stats-bar {
   display: flex;
@@ -447,9 +457,9 @@ premium-button[size="md"] {
   align-items: center;
   padding: 0.8rem 1.5rem;
   background: rgba(58,58,58,.4);
-  border: 1px solid var(--border);
-  border-top: none;
-  margin-bottom: 1.5rem;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
   font-size: 0.9rem;
 }
 
@@ -470,10 +480,11 @@ premium-button[size="md"] {
 .error-message {
   display: none;
   background: linear-gradient(135deg, rgba(90,15,15,.95), rgba(192,57,43,.95));
-  border: 1px solid rgba(232,199,75,.3);
-  border-radius: 4px;
-  padding: 1rem 1.2rem;
-  margin-bottom: 1.2rem;
+  border: none;
+  border-bottom: 1px solid rgba(232,199,75,.3);
+  border-radius: 0;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0;
   color: var(--ink);
   font-size: 0.95rem;
   text-align: center;
@@ -493,15 +504,14 @@ premium-button[size="md"] {
 .thread-list { 
   display: block;
   overflow-x: auto;
-  scrollbar-gutter: stable; /* Previene layout shift quando scrollbar appare/scompare */
+  flex: 1;
 }
 
 .threads-table {
   width: 100%;
   border-collapse: collapse;
   background: linear-gradient(135deg, rgba(58,58,58,.8) 0%, rgba(45,45,45,.8) 100%);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 3px 12px var(--shadow);
+  border: none;
   font-size: 0.95rem;
 }
 
@@ -514,7 +524,7 @@ premium-button[size="md"] {
   font-family: 'Cinzel', serif;
   font-weight: 700;
   color: var(--ink);
-  padding: 1rem;
+  padding: 0.8rem 1.5rem;
   text-align: left;
   letter-spacing: 0.05em;
   border-right: 1px solid var(--border);
@@ -526,14 +536,11 @@ premium-button[size="md"] {
 
 .threads-table tbody tr {
   border-bottom: 1px solid var(--border);
-  border-left: 4px solid transparent;
-  transition: all var(--transition);
+  transition: background var(--transition);
 }
 
 .threads-table tbody tr:hover {
   background: rgba(232,199,75,0.08);
-  border-left-color: var(--gold-light);
-  box-shadow: 0 2px 8px rgba(232,199,75,0.15);
 }
 
 .threads-table tbody tr:last-child {
@@ -541,7 +548,7 @@ premium-button[size="md"] {
 }
 
 .threads-table td {
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.5rem;
   color: var(--ink);
   border-right: 1px solid var(--border);
 }
@@ -611,19 +618,20 @@ premium-button[size="md"] {
 
 .page-btn {
   font-family: 'Cinzel', serif; 
-  font-size: 0.8rem; 
-  font-weight: 700;
-  padding: 0.6rem 1rem; 
-  border-radius: 4px;
-  border: 2px solid var(--border);
-  background: rgba(45, 45, 45, 0.5);
-  color: var(--ink-faded);
+  font-size: 0.75rem; 
+  font-weight: 600;
+  padding: 0.5rem 0.9rem; 
+  border-radius: 3px;
+  border: 1px solid var(--gold-light);
+  background: rgba(58, 58, 58, 0.6);
+  color: var(--ink);
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
-  min-width: 40px;
+  min-width: 36px;
   text-align: center;
+  letter-spacing: 0.05em;
 }
 
 .page-btn::before {
@@ -634,13 +642,14 @@ premium-button[size="md"] {
   opacity: 0;
   transition: opacity 0.2s;
   pointer-events: none;
+  display: none;
 }
 
 .page-btn:hover { 
-  background: rgba(232, 199, 75, 0.1);
+  background: rgba(232, 199, 75, 0.12);
   border-color: var(--gold-light);
   color: var(--gold-light);
-  box-shadow: 0 0 8px rgba(232, 199, 75, 0.15);
+  box-shadow: 0 2px 8px rgba(232, 199, 75, 0.2);
 }
 
 .page-btn:hover::before {
@@ -648,20 +657,20 @@ premium-button[size="md"] {
 }
 
 .page-btn:active {
-  transform: scale(0.95);
+  transform: translateY(-1px);
 }
 
 .page-btn.active {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  background: linear-gradient(135deg, var(--gold-light), rgba(232, 199, 75, 0.8));
   color: var(--stone-bg);
-  border-color: var(--gold-dark);
-  box-shadow: 0 4px 12px rgba(232, 199, 75, 0.3);
-  font-weight: 900;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border-color: var(--gold-light);
+  box-shadow: 0 4px 12px rgba(232, 199, 75, 0.35);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .page-btn.active:hover {
-  box-shadow: 0 6px 16px rgba(232, 199, 75, 0.4);
+  box-shadow: 0 6px 16px rgba(232, 199, 75, 0.45);
   transform: translateY(-1px);
 }
 
