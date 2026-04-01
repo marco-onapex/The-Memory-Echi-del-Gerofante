@@ -104,7 +104,8 @@
 
 <!-- Main App Script -->
 <script type="module">
-  import { initApp, setupEventListeners, router } from './src/js/app.js';
+  import { initApp, setupEventListeners } from './src/js/app.js';
+  import { router } from './src/js/router.js';
   import { loadConfig } from './src/config-loader.js';
 
   (async () => {
@@ -120,6 +121,9 @@
       
       // Esponi router globalmente
       window.router = router;
+      
+      // Ripristina la view da URL (se user accede direttamente con ?thread=...)
+      router.restoreFromUrl();
       
       // Gestisci il back button del browser
       window.addEventListener('popstate', () => {

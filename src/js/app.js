@@ -7,7 +7,6 @@ import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';
 import { loadArchives, getCurrentYearFilter, filterByYear } from './archives.js';
-import { router } from './router.js';
 
 let supabaseClient = null;
 
@@ -27,9 +26,6 @@ export async function initApp(config) {
     
     // Carica i dati iniziali
     await search();
-    
-    // Ripristina la view da URL (se user accede direttamente con ?thread=...)
-    router.restoreFromUrl();
     
     // Event listener per caricare il detail thread quando richiesto
     window.addEventListener('thread-detail-view', (e) => {
@@ -98,6 +94,3 @@ export function setupEventListeners() {
 window.search = search;
 window.goToPage = goToPage;
 window.filterByYear = filterByYear;
-
-// Esponi router
-export { router };
