@@ -49,6 +49,13 @@ export async function searchThreads(supabase, filters = {}) {
       query = query.lte('last_post_at', dateTo + 'T23:59:59');
     }
 
+    // Year filter (archive)
+    if (filters.year) {
+      const yearStart = `${filters.year}-01-01T00:00:00`;
+      const yearEnd = `${filters.year}-12-31T23:59:59`;
+      query = query.gte('first_post_at', yearStart).lte('first_post_at', yearEnd);
+    }
+
     // Ordering and pagination
     query = query
       .order('last_post_at', { ascending: false, nullsFirst: false })

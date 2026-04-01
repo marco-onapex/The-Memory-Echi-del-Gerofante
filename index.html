@@ -29,8 +29,23 @@
 
 <!-- MAIN -->
 <div class="container" id="container">
-  <!-- Filters -->
-  <div class="filters-bar">
+  <div class="main-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">📚 Archivi</h3>
+          <ul class="sidebar-list" id="archives-list">
+            <li><a href="#" onclick="window.filterByYear('all');" class="sidebar-link active">Tutti i periodi</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- Filters -->
+      <div class="filters-bar">
     <div class="filter-group" style="flex:2 1 260px;">
       <label>🔍 Ricerca parola chiave</label>
       <input id="f-keyword" type="text" placeholder="Cerca nel titolo o nel testo..." />
@@ -65,14 +80,21 @@
 
   <!-- Pagination -->
   <div id="pagination" class="pagination"></div>
-</div>
-
+    </main>
+  </div>
 <!-- Thread Detail Page -->
 <div id="detail-page" class="detail-page" style="display:none;">
   <header class="detail-header-page">
     <button class="btn-back" onclick="window.router.back()" title="Torna alla lista">← Indietro</button>
     <h2 class="detail-title-page" id="detail-title-page"></h2>
   </header>
+  
+  <!-- Breadcrumb -->
+  <div class="detail-breadcrumb">
+    <a href="#" onclick="window.router.back();">📚 Forum</a>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current" id="breadcrumb-current"></span>
+  </div>
   
   <div class="detail-container">
     <div class="detail-meta-page" id="detail-meta-page"></div>

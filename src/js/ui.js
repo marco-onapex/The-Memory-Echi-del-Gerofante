@@ -57,6 +57,12 @@ export async function renderThreadDetail(threadId, threadName, supabase) {
   metaEl.innerHTML = '<div class="loading">Caricamento...</div>';
   postsEl.innerHTML = '';
 
+  // Aggiorna breadcrumb
+  const breadcrumbEl = document.getElementById('breadcrumb-current');
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = threadName;
+  }
+
   try {
     // Carica i dettagli del thread
     const { data: threadData, error: threadError } = await supabase

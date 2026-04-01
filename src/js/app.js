@@ -6,6 +6,7 @@
 import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';
+import { loadArchives, getCurrentYearFilter, filterByYear } from './archives.js';
 import { router } from './router.js';
 
 let supabaseClient = null;
@@ -20,6 +21,9 @@ export async function initApp(config) {
     
     // Testa connessione
     await testConnection();
+    
+    // Carica gli archivi nella sidebar
+    await loadArchives(supabaseClient);
     
     // Carica i dati iniziali
     await search();
@@ -56,6 +60,12 @@ export async function search(page = 1) {
   const filters = getFiltersFromUI();
   filters.page = page;
 
+  // Aggiungi il filtro anno se selezionato
+  const yearFilter = getCurrentYearFilter();
+  if (yearFilter !== 'all') {
+    filters.year = parseInt(yearFilter);
+  }
+
   await searchThreads(supabaseClient, filters);
 }
 
@@ -87,6 +97,7 @@ export function setupEventListeners() {
 // Esponi funzioni globali per HTML onclick
 window.search = search;
 window.goToPage = goToPage;
+window.filterByYear = filterByYear;
 
 // Esponi router
 export { router };

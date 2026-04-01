@@ -103,7 +103,89 @@ h1 {
   padding: 2rem 1.5rem 4rem;
 }
 
-/* ── FILTERS BAR ── */
+.main-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: relative;
+}
+
+.sidebar-nav {
+  position: sticky;
+  top: 2rem;
+  background: linear-gradient(135deg, rgba(245,234,216,.95) 0%, rgba(235,220,190,.95) 100%);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.4rem;
+  box-shadow: 0 3px 12px var(--shadow);
+}
+
+.sidebar-section {
+  margin-bottom: 1.4rem;
+}
+
+.sidebar-section:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--crimson);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255,255,255,.4);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.sidebar-link:hover {
+  background: rgba(212,175,55,.2);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+.sidebar-link.active {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  color: var(--ink);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(255,255,255,.3);
+}
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── FILTERS ── */
 .filters-bar {
   background: linear-gradient(135deg, rgba(245,234,216,.97), rgba(232,213,176,.97));
   border: 1px solid var(--border);
@@ -451,6 +533,38 @@ h1 {
   flex: 1;
 }
 
+/* ── BREADCRUMB ── */
+.detail-breadcrumb {
+  padding: 0.8rem 2rem;
+  background: rgba(245,234,216,.05);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+}
+
+.detail-breadcrumb a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.detail-breadcrumb a:hover {
+  color: var(--parchment);
+}
+
+.breadcrumb-sep {
+  color: var(--parchment-dk);
+  opacity: 0.7;
+}
+
+.breadcrumb-current {
+  color: var(--parchment-dk);
+  font-weight: 600;
+}
+
 .detail-container {
   flex: 1;
   max-width: 900px;
@@ -603,6 +717,15 @@ h1 {
 
 /* ── RESPONSIVE DESIGN ── */
 @media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
   header {
     padding: 1.8rem 1rem 1.5rem;
   }
