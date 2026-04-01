@@ -113,14 +113,14 @@
       // Carica la configurazione
       const config = await loadConfig();
       
+      // Esponi router globalmente PRIMA di initApp
+      window.router = router;
+      
       // Inizializza app
       await initApp(config.supabase);
       
       // Setup event listeners
       setupEventListeners();
-      
-      // Esponi router globalmente
-      window.router = router;
       
       // Ripristina la view da URL (se user accede direttamente con ?thread=...)
       router.restoreFromUrl();
