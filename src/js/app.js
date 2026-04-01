@@ -95,3 +95,9 @@ export function setupEventListeners() {
 window.search = search;
 window.goToPage = goToPage;
 window.filterByYear = filterByYear;
+window.openThread = (threadId, threadName) => {
+  // Wrapper per retrocompatibilità - redirige a router
+  if (typeof window.router !== 'undefined') {
+    window.router.goToThreadDetail(threadId, threadName);
+  }
+};
