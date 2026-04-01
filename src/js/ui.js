@@ -138,11 +138,29 @@ export async function renderThreadDetail(threadId, supabase) {
     metaHtml += '</div>';
     metaEl.innerHTML = metaHtml;
 
+    console.log('📋 DEBUG - Detail container:', {
+      detailContainer: document.querySelector('.detail-container'),
+      display: window.getComputedStyle(document.querySelector('.detail-container')).display,
+      visibility: window.getComputedStyle(document.querySelector('.detail-container')).visibility,
+      height: window.getComputedStyle(document.querySelector('.detail-container')).height,
+      offsetHeight: document.querySelector('.detail-container')?.offsetHeight
+    });
+
     // Renderizza i post
     if (!posts.length) {
       postsEl.innerHTML = '<div class="empty">Nessun messaggio in questo thread.</div>';
       return;
     }
+
+    console.log('📋 DEBUG - Primo post:', posts[0]);
+    console.log('📋 DEBUG - Content length:', posts[0].content?.length);
+    console.log('📋 DEBUG - Posts element before update:', {
+      display: window.getComputedStyle(postsEl).display,
+      visibility: window.getComputedStyle(postsEl).visibility,
+      overflow: window.getComputedStyle(postsEl).overflow,
+      height: window.getComputedStyle(postsEl).height,
+      maxHeight: window.getComputedStyle(postsEl).maxHeight
+    });
 
     postsEl.innerHTML = posts.map((p, idx) => `
       <div class="post-card">
@@ -155,6 +173,14 @@ export async function renderThreadDetail(threadId, supabase) {
         </div>
         <div class="post-content">${sanitizeHtml(p.content)}</div>
       </div>`).join('');
+
+    console.log('📋 DEBUG - Posts element after update:', {
+      innerHTML: postsEl.innerHTML.substring(0, 100),
+      childCount: postsEl.children.length,
+      display: window.getComputedStyle(postsEl).display,
+      firstChildDisplay: postsEl.children[0] ? window.getComputedStyle(postsEl.children[0]).display : 'N/A',
+      firstChildHeight: postsEl.children[0] ? window.getComputedStyle(postsEl.children[0]).height : 'N/A'
+    });
     
     console.log('✅ Thread detail renderizzato correttamente');
   } catch (err) {
