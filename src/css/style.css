@@ -98,9 +98,14 @@ h1 {
 
 /* ── MAIN LAYOUT ── */
 .container {
+  display: block;
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
+}
+
+.container.hidden {
+  display: none;
 }
 
 .main-layout {
@@ -478,11 +483,15 @@ h1 {
 
 /* ── DETAIL PAGE (Full-page thread view) ── */
 .detail-page {
+  display: none;
   min-height: 100vh;
   background-color: var(--stone-bg);
   background-image: inherit;
-  display: flex;
   flex-direction: column;
+}
+
+.detail-page.visible {
+  display: flex;
 }
 
 .detail-header-page {

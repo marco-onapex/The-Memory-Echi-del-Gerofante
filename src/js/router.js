@@ -77,8 +77,10 @@ class Router {
     }
 
     if (view === 'detail') {
-      listView.style.display = 'none';
-      detailView.style.display = 'block';
+      listView.classList.remove('visible');
+      listView.classList.add('hidden');
+      detailView.classList.remove('hidden');
+      detailView.classList.add('visible');
       this.currentView = 'detail';
 
       // Trigger evento custom per caricare i dati del thread
@@ -88,8 +90,10 @@ class Router {
       console.log('🎯 Dispatching thread-detail-view event with params:', params);
       window.dispatchEvent(event);
     } else {
-      listView.style.display = 'block';
-      detailView.style.display = 'none';
+      listView.classList.remove('hidden');
+      listView.classList.add('visible');
+      detailView.classList.remove('visible');
+      detailView.classList.add('hidden');
       this.currentView = 'list';
     }
 
