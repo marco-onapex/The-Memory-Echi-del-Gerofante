@@ -84,6 +84,12 @@ export async function renderThreadDetail(threadId, supabase) {
     
     if (threadError) throw threadError;
 
+    // Log tutte le proprietà del thread per debug
+    if (threadData) {
+      console.log('🔍 Thread properties:', Object.keys(threadData));
+      console.log('📋 Thread full object:', threadData);
+    }
+
     // Carica tutti i messaggi del thread
     console.log('🔄 Caricamento messaggi...');
     const { data: postsData, error: postsError } = await supabase
