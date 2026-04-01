@@ -13,6 +13,8 @@ class Router {
    * Naviga alla pagina di dettaglio di un thread
    */
   goToThreadDetail(threadId, threadName) {
+    console.log('🔗 Router: navigating to thread', threadId, threadName);
+    
     // Salva stato per il back
     this.routeStack.push({
       view: 'list',
@@ -65,11 +67,13 @@ class Router {
    * Cambia la view (list o detail)
    */
   switchView(view, params = {}) {
+    console.log('📺 Router: switching view to', view);
+    
     const listView = document.getElementById('container');
     const detailView = document.getElementById('detail-page');
 
     if (!listView || !detailView) {
-      console.error('View elements not found');
+      console.error('❌ View elements not found', { listView, detailView });
       return;
     }
 
@@ -82,6 +86,7 @@ class Router {
       const event = new CustomEvent('thread-detail-view', {
         detail: params
       });
+      console.log('🎯 Dispatching thread-detail-view event with params:', params);
       window.dispatchEvent(event);
     } else {
       listView.style.display = 'block';

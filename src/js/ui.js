@@ -45,13 +45,25 @@ export function renderThreads(threads) {
  * @param {Object} supabase - Client Supabase
  */
 export async function renderThreadDetail(threadId, threadName, supabase) {
-  if (!supabase) return;
+  console.log('📄 renderThreadDetail called for thread:', threadId, threadName);
+  
+  if (!supabase) {
+    console.error('❌ Supabase not initialized');
+    return;
+  }
 
   const titleEl = document.getElementById('detail-title-page');
   const metaEl = document.getElementById('detail-meta-page');
   const postsEl = document.getElementById('detail-posts-page');
 
-  if (!titleEl || !metaEl || !postsEl) return;
+  if (!titleEl || !metaEl || !postsEl) {
+    console.error('❌ Detail elements not found', {
+      titleEl: !!titleEl,
+      metaEl: !!metaEl,
+      postsEl: !!postsEl
+    });
+    return;
+  }
 
   titleEl.textContent = threadName;
   metaEl.innerHTML = '<div class="loading">Caricamento...</div>';
