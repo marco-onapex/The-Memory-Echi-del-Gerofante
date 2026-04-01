@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Generate config from secrets
+        run: |
+          mkdir -p src
+          cat > src/config.js << 'EOF'
+          export default {
+            supabase: {
+              url: '${{ secrets.VITE_SUPABASE_URL }}',
+              anonKey: '${{ secrets.VITE_SUPABASE_ANON_KEY }}'
+            },
+            app: {
+              name: 'L\'Orecchio del Gerofante',
+              version: '1.0.0',
+              resultsPerPage: 25
+            }
+          };
+          EOF
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Memory: Echi del Gerofante - Archivio perduto del forum GDR di The Miracle Shard (2001-2019)" />
+  <meta name="theme-color" content="#D4AF37" />
+  
+  <title>The Memory: Echi del Gerofante</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./src/css/style.css" />
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-ornament">𝔍 ✦ 𝔍</div>
+  <h1>L'Orecchio del Gerofante</h1>
+  <p class="subtitle">Archivio perduto del forum GDR di The Miracle Shard (2001-2019)</p>
+  <div class="header-line"></div>
+</header>
+
+<!-- MAIN -->
+<div class="container" id="container">
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="filter-group" style="flex:2 1 260px;">
+      <label>🔍 Ricerca parola chiave</label>
+      <input id="f-keyword" type="text" placeholder="Cerca nel titolo o nel testo..." />
+    </div>
+    <div class="filter-group">
+      <label>✍ Autore</label>
+      <input id="f-author" type="text" placeholder="Nome utente..." />
+    </div>
+    <div class="filter-group">
+      <label>📅 Dal</label>
+      <input id="f-date-from" type="date" />
+    </div>
+    <div class="filter-group">
+      <label>📅 Al</label>
+      <input id="f-date-to" type="date" />
+    </div>
+    <button class="btn-search" onclick="window.search()">Cerca</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <span id="stats-txt"></span>
+  </div>
+
+  <!-- Error Box -->
+  <div id="error-box" class="error" style="display:none;"></div>
+
+    <!-- Thread List -->
+  <div id="thread-list" class="thread-list">
+    <div class="empty">Caricamento...</div>
+  </div>
+
+  <!-- Pagination -->
+  <div id="pagination" class="pagination"></div>
+</div>
+
+<!-- Thread Detail Page -->
+<div id="detail-page" class="detail-page" style="display:none;">
+  <header class="detail-header-page">
+    <button class="btn-back" onclick="window.router.back()" title="Torna alla lista">← Indietro</button>
+    <h2 class="detail-title-page" id="detail-title-page"></h2>
+  </header>
+  
+  <div class="detail-container">
+    <div class="detail-meta-page" id="detail-meta-page"></div>
+    <div class="detail-posts-page" id="detail-posts-page"></div>
+  </div>
+</div>
+
+<!-- Main App Script -->
+<script type="module">
+  import { initApp, setupEventListeners, router } from './src/js/app.js';
+  import { loadConfig } from './src/config-loader.js';
+
+  (async () => {
+    try {
+      // Carica la configurazione
+      const config = await loadConfig();
+      
+      // Inizializza app
+      await initApp(config.supabase);
+      
+      // Setup event listeners
+      setupEventListeners();
+      
+      // Esponi router globalmente
+      window.router = router;
+      
+      // Gestisci il back button del browser
+      window.addEventListener('popstate', () => {
+        router.handlePopState();
+      });
+      
+      console.log("🎭 L'Orecchio del Gerofante - versione 1.0.0");
+    } catch (err) {
+      console.error('Errore inizializzazione app:', err);
+      const errorBox = document.getElementById('error-box');
+      if (errorBox) {
+        errorBox.textContent = "❌ Errore: " + err.message;
+        errorBox.style.display = 'block';
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>

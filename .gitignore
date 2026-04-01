@@ -1,0 +1,48 @@
+# Environment variables (mai commitare credenziali!)
+.env
+.env.local
+.env.*.local
+
+# Generated config
+src/config.js
+!src/config.js.example
+
+# IDE e Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Dipendenze (se usi node)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Vi/Vim backup files
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]

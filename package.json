@@ -1,0 +1,33 @@
+{
+  "name": "the-memory-echi-del-gerofante",
+  "version": "1.0.0",
+  "description": "Archivio interattivo del forum GDR – Ultima Online The Miracle Shard (2001-2019)",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npm run build:config && npx http-server . -p 8000 -c-1",
+    "serve": "npm run build:config && npx http-server . -p 8000",
+    "build:config": "node build.js",
+    "build": "npm run build:config",
+    "test": "echo 'No tests configured yet'",
+    "setup": "copy .env.example .env.local && echo 'Modifica .env.local con le tue credenziali Supabase'"
+  },
+  "keywords": [
+    "forum",
+    "archive",
+    "gdr",
+    "ultima-online",
+    "interactive",
+    "supabase",
+    "github-pages"
+  ],
+  "author": "Marco Onapex",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marco-onapex/The-Memory-Echi-del-Gerofante.git"
+  },
+  "homepage": "https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante",
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
