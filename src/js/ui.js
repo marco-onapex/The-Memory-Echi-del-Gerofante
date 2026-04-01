@@ -80,15 +80,9 @@ export async function renderThreadDetail(threadId, supabase) {
       .eq('id', threadId)
       .single();
 
-    console.log('📦 Thread data:', { data: threadData, error: threadError });
+    console.log('📦 Thread data loaded');
     
     if (threadError) throw threadError;
-
-    // Log tutte le proprietà del thread per debug
-    if (threadData) {
-      console.log('🔍 Thread properties:', Object.keys(threadData));
-      console.log('📋 Thread full object:', threadData);
-    }
 
     // Carica tutti i messaggi del thread
     console.log('🔄 Caricamento messaggi...');
@@ -108,17 +102,9 @@ export async function renderThreadDetail(threadId, supabase) {
     // Aggiorna il titolo dal DB
     if (threadData?.name) {
       titleEl.textContent = threadData.name;
-      console.log('📝 Title updated:', titleEl.textContent);
-      console.log('🎨 Title element:', {
-        id: titleEl.id,
-        className: titleEl.className,
-        color: window.getComputedStyle(titleEl).color,
-        display: window.getComputedStyle(titleEl).display
-      });
       const breadcrumbEl = document.getElementById('breadcrumb-current');
       if (breadcrumbEl) {
         breadcrumbEl.textContent = threadData.name;
-        console.log('🔤 Breadcrumb updated:', breadcrumbEl.textContent);
       }
     }
 
@@ -169,16 +155,6 @@ export async function renderThreadDetail(threadId, supabase) {
         </div>
         <div class="post-content">${sanitizeHtml(p.content)}</div>
       </div>`).join('');
-    
-    // Log della lunghezza del contenuto renderizzato
-    console.log('📊 DOM updated:', {
-      titleText: titleEl.textContent?.substring(0, 50),
-      metaHtmlLength: metaEl.innerHTML.length,
-      postsHtmlLength: postsEl.innerHTML.length,
-      metaDisplay: window.getComputedStyle(metaEl).display,
-      postsDisplay: window.getComputedStyle(postsEl).display,
-      detailPageDisplay: window.getComputedStyle(document.getElementById('detail-page')).display
-    });
     
     console.log('✅ Thread detail renderizzato correttamente');
   } catch (err) {
