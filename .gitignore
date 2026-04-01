@@ -3,10 +3,6 @@
 .env.local
 .env.*.local
 
-# Generated config
-src/config.js
-!src/config.js.example
-
 # IDE e Editor
 .vscode/
 .idea/
