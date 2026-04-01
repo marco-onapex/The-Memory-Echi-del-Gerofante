@@ -102,9 +102,17 @@ export async function renderThreadDetail(threadId, supabase) {
     // Aggiorna il titolo dal DB
     if (threadData?.title) {
       titleEl.textContent = threadData.title;
+      console.log('📝 Title updated:', titleEl.textContent);
+      console.log('🎨 Title element:', {
+        id: titleEl.id,
+        className: titleEl.className,
+        color: window.getComputedStyle(titleEl).color,
+        display: window.getComputedStyle(titleEl).display
+      });
       const breadcrumbEl = document.getElementById('breadcrumb-current');
       if (breadcrumbEl) {
         breadcrumbEl.textContent = threadData.title;
+        console.log('🔤 Breadcrumb updated:', breadcrumbEl.textContent);
       }
     }
 
@@ -155,6 +163,16 @@ export async function renderThreadDetail(threadId, supabase) {
         </div>
         <div class="post-content">${sanitizeHtml(p.content)}</div>
       </div>`).join('');
+    
+    // Log della lunghezza del contenuto renderizzato
+    console.log('📊 DOM updated:', {
+      titleText: titleEl.textContent?.substring(0, 50),
+      metaHtmlLength: metaEl.innerHTML.length,
+      postsHtmlLength: postsEl.innerHTML.length,
+      metaDisplay: window.getComputedStyle(metaEl).display,
+      postsDisplay: window.getComputedStyle(postsEl).display,
+      detailPageDisplay: window.getComputedStyle(document.getElementById('detail-page')).display
+    });
     
     console.log('✅ Thread detail renderizzato correttamente');
   } catch (err) {
