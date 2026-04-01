@@ -7,6 +7,7 @@ import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';
 import { loadArchives, getCurrentYearFilter, filterByYear } from './archives.js';
+import { router } from './router.js';
 
 let supabaseClient = null;
 
@@ -24,17 +25,22 @@ export async function initApp(config) {
     // Carica gli archivi nella sidebar
     await loadArchives(supabaseClient);
     
+    // Ripristina la view dall'URL (se presente)
+    router.restoreFromUrl();
+    
     // Carica i dati iniziali
     await search();
     
     // Event listener per caricare il detail thread quando richiesto
     window.addEventListener('thread-detail-view', (e) => {
-      console.log('📨 Received thread-detail-view event:', e.detail);
       const { threadId } = e.detail;
       renderThreadDetail(threadId, supabaseClient);
     });
-    
-    console.log('✅ App initialized successfully');
+
+    // Event listener per back/forward del browser
+    window.addEventListener('popstate', (e) => {
+      router.handlePopState(e);
+    });
   } catch (err) {
     console.error('❌ Init error:', err);
     const el = document.getElementById('error-box');
@@ -63,6 +69,15 @@ export async function search(page = 1) {
     filters.year = parseInt(yearFilter);
   }
 
+  // Sincronizza router con pagina e parametri di ricerca
+  router.currentPage = page;
+  router.searchParams = {
+    keyword: filters.keyword || '',
+    author: filters.author || '',
+    dateFrom: filters.dateFrom || '',
+    dateTo: filters.dateTo || ''
+  };
+
   await searchThreads(supabaseClient, filters);
 }
 
@@ -70,7 +85,8 @@ export async function search(page = 1) {
  * Vai a una pagina specifica
  */
 export function goToPage(page) {
-  search(page);
+  // Delega al router per aggiornare URL e state
+  router.goToPage(page);
 }
 
 /**

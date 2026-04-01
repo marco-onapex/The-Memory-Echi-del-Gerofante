@@ -7,10 +7,44 @@ class Router {
   constructor() {
     this.currentView = 'list';
     this.routeStack = [];
+    this.currentPage = 1;
+    this.searchParams = {};
   }
 
   /**
-   * Naviga alla pagina di dettaglio di un thread (solo ID)
+   * Naviga a una pagina specifica (paginazione)
+   */
+  goToPage(page) {
+    if (page < 1) return; // Prevedi page < 1
+    
+    this.currentPage = page;
+    console.log('📄 Router: navigating to page', page);
+    
+    // Costruisci query string con pagina e filtri attuali
+    const params = new URLSearchParams();
+    params.set('page', page);
+    
+    // Aggiungi parametri di ricerca se presenti
+    if (this.searchParams.keyword) params.set('keyword', this.searchParams.keyword);
+    if (this.searchParams.author) params.set('author', this.searchParams.author);
+    if (this.searchParams.dateFrom) params.set('dateFrom', this.searchParams.dateFrom);
+    if (this.searchParams.dateTo) params.set('dateTo', this.searchParams.dateTo);
+
+    const url = `?${params.toString()}`;
+    
+    // Aggiorna URL
+    window.history.pushState(
+      { view: 'list', page, searchParams: this.searchParams },
+      `Lista thread - Pagina ${page}`,
+      url
+    );
+
+    // Trigger ricerca con nuova pagina
+    window.search(page);
+  }
+
+  /**
+   * Naviga a una pagina di dettaglio di un thread (solo ID)
    */
   goToThreadDetail(threadId) {
     console.log('🔗 Router: navigating to thread', threadId);
@@ -57,6 +91,13 @@ class Router {
       this.switchView('detail', {
         threadId: event.state.threadId
       });
+    } else if (event.state?.view === 'list') {
+      // Ripristina pagina dalla history
+      this.currentPage = event.state.page || 1;
+      this.searchParams = event.state.searchParams || {};
+      this.switchView('list');
+      // Trigger ricerca con pagina ripristinata
+      window.search(this.currentPage);
     } else {
       this.switchView('list');
     }
@@ -68,11 +109,11 @@ class Router {
   switchView(view, params = {}) {
     console.log('📺 Router: switching view to', view);
     
-    const listView = document.getElementById('container');
-    const detailView = document.getElementById('detail-page');
+    const listView = document.getElementById('list-view');
+    const detailView = document.getElementById('detail-view');
 
     if (!listView || !detailView) {
-      console.error('❌ View elements not found', { listView, detailView });
+      console.error('View elements not found');
       return;
     }
 
@@ -107,6 +148,16 @@ class Router {
   restoreFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const threadId = params.get('thread');
+    const page = parseInt(params.get('page')) || 1;
+
+    // Salva parametri di ricerca dal URL
+    this.currentPage = page;
+    this.searchParams = {
+      keyword: params.get('keyword') || '',
+      author: params.get('author') || '',
+      dateFrom: params.get('dateFrom') || '',
+      dateTo: params.get('dateTo') || ''
+    };
 
     if (threadId) {
       this.switchView('detail', { threadId });
@@ -116,6 +167,10 @@ class Router {
         detail: { threadId }
       });
       window.dispatchEvent(event);
+    } else if (page > 1 || Object.values(this.searchParams).some(v => v)) {
+      // Se c'è una pagina > 1 o parametri di ricerca, fai ricerca
+      this.switchView('list');
+      window.search(this.currentPage);
     }
   }
 }

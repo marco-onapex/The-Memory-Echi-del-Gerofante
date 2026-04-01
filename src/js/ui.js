@@ -6,7 +6,6 @@ import { escHtml, sanitizeHtml, formatDate } from './utils.js';
 import { router } from './router.js';
 
 // Global state
-export let currentPage = 1;
 export const PAGE_SIZE = 25;
 export let totalCount = 0;
 
@@ -27,24 +26,41 @@ export function renderThreads(threads) {
     <table class="threads-table">
       <thead>
         <tr>
-          <th class="col-title">Titolo</th>
-          <th class="col-author">Autore</th>
-          <th class="col-posts">Messaggi</th>
-          <th class="col-dates">Data creazione</th>
-          <th class="col-dates">Ultimo messaggio</th>
+          <th>Discussione</th>
+          <th style="width: 80px; text-align: center;">Risposte</th>
+          <th>Ultimo Messaggio</th>
         </tr>
       </thead>
       <tbody>
         ${threads.map(t => {
-          const date = t.last_post_at ? formatDate(t.last_post_at) : '—';
-          const firstDate = t.first_post_at ? formatDate(t.first_post_at) : '—';
+          const firstDate = t.created_at ? formatDate(t.created_at) : formatDate(t.first_post_at);
+          const lastDate = t.last_post_at ? formatDate(t.last_post_at) : '—';
+          const lastAuthor = t.last_post_author || 'Anonimo';
+          const lastPreview = t.last_post_preview ? `"${escHtml(t.last_post_preview)}"` : 'No preview';
+          
           return `
-            <tr class="thread-row" onclick="window.router.goToThreadDetail(${t.id})" style="cursor: pointer;">
-              <td class="col-title"><strong>${escHtml(t.name)}</strong></td>
-              <td class="col-author">${escHtml(t.author || 'Anonimo')}</td>
-              <td class="col-posts">${t.post_count}</td>
-              <td class="col-dates">${firstDate}</td>
-              <td class="col-dates">${date}</td>
+            <tr onclick="window.router.goToThreadDetail(${t.id})" style="cursor: pointer;">
+              <td>
+                <div class="col-title">
+                  <div class="title-text"><strong>${escHtml(t.name)}</strong></div>
+                  <div class="title-meta">
+                    <span class="by-label">by</span>
+                    <span class="author-highlight">${escHtml(t.thread_author || 'Anonimo')}</span>
+                    <span class="meta-sep">•</span>
+                    <span class="meta-date">${firstDate}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="col-count" style="text-align: center;">
+                ${t.post_count || 0}
+              </td>
+              <td class="col-last-post">
+                <div class="last-post-author">
+                  <span class="by-label">by</span>
+                  <span class="author-highlight">${escHtml(lastAuthor)}</span>
+                </div>
+                <div class="last-post-date">${lastDate}</div>
+              </td>
             </tr>
           `;
         }).join('')}
@@ -59,16 +75,14 @@ export function renderThreads(threads) {
  * @param {Object} supabase - Client Supabase
  */
 export async function renderThreadDetail(threadId, supabase) {
-  console.log('📄 renderThreadDetail called for thread:', threadId);
-  
   if (!supabase) {
-    console.error('❌ Supabase not initialized');
+    console.error('Supabase not initialized');
     return;
   }
 
-  const titleEl = document.getElementById('detail-title-page');
-  const metaEl = document.getElementById('detail-meta-page');
-  const postsEl = document.getElementById('detail-posts-page');
+  const titleEl = document.getElementById('detail-title');
+  const metaEl = document.getElementById('detail-meta');
+  const postsEl = document.getElementById('detail-posts');
 
   if (!titleEl || !metaEl || !postsEl) {
     console.error('❌ Detail elements not found', {
@@ -128,7 +142,7 @@ export async function renderThreadDetail(threadId, supabase) {
     if (threadData) {
       metaHtml += `<div class="meta-item">
         <span class="meta-label">Autore:</span>
-        <span class="meta-value">${escHtml(threadData.author || 'Anonimo')}</span>
+        <span class="meta-value">${escHtml(threadData.thread_author || 'Anonimo')}</span>
       </div>`;
       
       if (threadData.first_post_at) {
@@ -163,9 +177,9 @@ export async function renderThreadDetail(threadId, supabase) {
       <div class="post-card">
         <div class="post-header">
           <div class="post-info">
+            <span class="post-number">#${idx + 1}</span>
             <span class="post-author">${escHtml(p.author)}</span>
             <span class="post-date">${p.posted_at ? formatDate(p.posted_at) : '—'}</span>
-            <span class="post-number">#${idx + 1}</span>
           </div>
         </div>
         <div class="post-content">${sanitizeHtml(p.content)}</div>
@@ -186,33 +200,39 @@ export async function renderThreadDetail(threadId, supabase) {
  * @param {Function} searchFn - Funzione ricerca da chiamare
  */
 export function renderPagination(totalPages, searchFn) {
-  const el = document.getElementById('pagination');
-  if (!el) return;
+  const elBottom = document.getElementById('pagination');
+  const elTop = document.getElementById('pagination-top');
+  
+  if (!elBottom && !elTop) return;
 
   if (totalPages <= 1) {
-    el.innerHTML = '';
+    if (elBottom) elBottom.innerHTML = '';
+    if (elTop) elTop.innerHTML = '';
     return;
   }
 
   let html = '';
-  html += `<button class="page-btn" onclick="window.goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹ Prec</button>`;
+  html += `<button class="page-btn" onclick="window.goToPage(${router.currentPage - 1})" ${router.currentPage === 1 ? 'disabled' : ''}>‹ Prec</button>`;
 
   const delta = 2;
   const pages = [];
   for (let i = 1; i <= totalPages; i++) {
-    if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+    if (i === 1 || i === totalPages || (i >= router.currentPage - delta && i <= router.currentPage + delta)) {
       pages.push(i);
     }
   }
   let prev = null;
   for (const p of pages) {
     if (prev && p - prev > 1) html += `<span class="page-info">…</span>`;
-    html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="window.goToPage(${p})">${p}</button>`;
+    html += `<button class="page-btn ${p === router.currentPage ? 'active' : ''}" onclick="window.goToPage(${p})">${p}</button>`;
     prev = p;
   }
 
-  html += `<button class="page-btn" onclick="window.goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Succ ›</button>`;
-  el.innerHTML = html;
+  html += `<button class="page-btn" onclick="window.goToPage(${router.currentPage + 1})" ${router.currentPage === totalPages ? 'disabled' : ''}>Succ ›</button>`;
+  
+  // Genera pagination in entrambi i posti
+  if (elBottom) elBottom.innerHTML = html;
+  if (elTop) elTop.innerHTML = html;
 }
 
 /**
@@ -222,15 +242,7 @@ export function renderStats() {
   const el = document.getElementById('stats-txt');
   if (!el) return;
 
-  const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
-  el.innerHTML = `Trovati <strong>${totalCount.toLocaleString('it')}</strong> thread · Pagina <strong>${currentPage}</strong> di <strong>${totalPages}</strong>`;
-}
-
-/**
- * Aggiorna pagina corrente
- */
-export function setCurrentPage(page) {
-  currentPage = page;
+  el.innerHTML = `Trovati <strong>${totalCount.toLocaleString('it')}</strong> thread GDR`;
 }
 
 /**
