@@ -46,35 +46,47 @@
     <main class="main-content">
       <!-- Filters -->
       <div class="filters-bar">
-        <premium-input 
-          id="f-keyword"
-          label="🔍 Ricerca parola chiave"
-          placeholder="Cerca nel titolo o nel testo..."
-          icon="🔎"
-        ></premium-input>
+        <div class="filter-group" style="flex:2 1 260px;">
+          <label class="filter-label">🔍 Ricerca parola chiave</label>
+          <input 
+            id="f-keyword" 
+            type="text" 
+            placeholder="Cerca nel titolo o nel testo..."
+            class="form-input premium-input"
+          />
+        </div>
         
-        <premium-input 
-          id="f-author"
-          label="✍ Autore"
-          placeholder="Nome utente..."
-          icon="👤"
-        ></premium-input>
+        <div class="filter-group">
+          <label class="filter-label">✍ Autore</label>
+          <input 
+            id="f-author" 
+            type="text" 
+            placeholder="Nome utente..."
+            class="form-input premium-input"
+          />
+        </div>
         
-        <premium-date-input 
-          id="f-date-from"
-          label="📅 Dal"
-          icon="📅"
-        ></premium-date-input>
+        <div class="filter-group">
+          <label class="filter-label">📅 Dal</label>
+          <input 
+            id="f-date-from" 
+            type="date"
+            class="form-input premium-input premium-date"
+          />
+        </div>
         
-        <premium-date-input 
-          id="f-date-to"
-          label="📅 Al"
-          icon="📅"
-        ></premium-date-input>
+        <div class="filter-group">
+          <label class="filter-label">📅 Al</label>
+          <input 
+            id="f-date-to" 
+            type="date"
+            class="form-input premium-input premium-date"
+          />
+        </div>
         
-        <premium-button variant="primary" size="md" onclick="window.search()">
+        <button class="btn-search btn-premium" onclick="window.search()">
           🔍 Cerca
-        </premium-button>
+        </button>
       </div>
 
   <!-- Stats -->

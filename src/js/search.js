@@ -76,18 +76,13 @@ export async function searchThreads(supabase, filters = {}) {
 }
 
 /**
- * Ottiene i filtri attuali dall'interfaccia (Web Components)
+ * Ottiene i filtri attuali dall'interfaccia
  */
 export function getFiltersFromUI() {
-  const keywordEl = document.getElementById('f-keyword');
-  const authorEl = document.getElementById('f-author');
-  const dateFromEl = document.getElementById('f-date-from');
-  const dateToEl = document.getElementById('f-date-to');
-
   return {
-    keyword: keywordEl?.getValue?.() || keywordEl?.value?.trim() || '',
-    author: authorEl?.getValue?.() || authorEl?.value?.trim() || '',
-    dateFrom: dateFromEl?.getValue?.() || dateFromEl?.value || '',
-    dateTo: dateToEl?.getValue?.() || dateToEl?.value || ''
+    keyword: document.getElementById('f-keyword')?.value.trim() || '',
+    author: document.getElementById('f-author')?.value.trim() || '',
+    dateFrom: document.getElementById('f-date-from')?.value || '',
+    dateTo: document.getElementById('f-date-to')?.value || ''
   };
 }

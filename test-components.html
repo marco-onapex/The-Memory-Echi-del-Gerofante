@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Web Components</title>
+  <link rel="stylesheet" href="./src/css/style.css" />
+  <style>
+    body {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 2px solid #E8C74B;
+      padding-bottom: 0.5rem;
+    }
+    .test-section {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(45, 45, 45, 0.5);
+      border: 1px solid #4A4A4A;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧪 Test Web Components</h1>
+
+<h2>1. Premium Input</h2>
+<div class="test-section">
+  <premium-input 
+    id="test-input"
+    label="🔍 Ricerca"
+    placeholder="Tipo qualcosa..."
+    icon="🔎"
+  ></premium-input>
+  <p id="input-test"></p>
+</div>
+
+<h2>2. Premium Date Input</h2>
+<div class="test-section">
+  <premium-date-input 
+    id="test-date"
+    label="📅 Data"
+    icon="📅"
+  ></premium-date-input>
+  <p id="date-test"></p>
+</div>
+
+<h2>3. Premium Button</h2>
+<div class="test-section">
+  <premium-button variant="primary" size="md" id="test-btn">
+    🔍 Cerca
+  </premium-button>
+  <p id="btn-test"></p>
+</div>
+
+<h2>4. Elemento Standard (per confronto)</h2>
+<div class="test-section">
+  <input type="text" placeholder="Input HTML standard" />
+  <p>Questo è un input HTML standard - paragonalo con i Web Components sopra</p>
+</div>
+
+<script type="module">
+  // Importa i componenti
+  import { 
+    PremiumInput, 
+    PremiumButton, 
+    PremiumDateInput 
+  } from './src/js/components.js';
+
+  // Test 1: Controlla se i componenti sono registrati
+  console.log('✓ Web Components importati:', {
+    PremiumInput,
+    PremiumButton,
+    PremiumDateInput
+  });
+
+  // Test 2: Controlla se gli elementi custom sono nel DOM
+  setTimeout(() => {
+    const input = document.getElementById('test-input');
+    const date = document.getElementById('test-date');
+    const btn = document.getElementById('test-btn');
+
+    document.getElementById('input-test').textContent = 
+      input ? `✓ premium-input trovato (Shadow DOM: ${!!input.shadowRoot})` : '✗ premium-input non trovato';
+    
+    document.getElementById('date-test').textContent = 
+      date ? `✓ premium-date-input trovato (Shadow DOM: ${!!date.shadowRoot})` : '✗ premium-date-input non trovato';
+    
+    document.getElementById('btn-test').textContent = 
+      btn ? `✓ premium-button trovato (Shadow DOM: ${!!btn.shadowRoot})` : '✗ premium-button non trovato';
+
+    console.log('DOM Elements:', { input, date, btn });
+    console.log('Custom Elements Registered:', Object.entries(customElements.get ? {} : window.customElements));
+  }, 100);
+</script>
+
+</body>
+</html>

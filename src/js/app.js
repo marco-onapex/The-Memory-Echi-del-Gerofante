@@ -3,9 +3,6 @@
  * L'Orecchio del Gerofante - Forum Archive Browser
  */
 
-// Import Web Components
-import { PremiumInput, PremiumButton, PremiumSelect, PremiumDateInput } from './components.js';
-
 import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';

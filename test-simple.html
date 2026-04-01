@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test: Simple Component</title>
+  <style>
+    body {
+      background: #0F0F0F;
+      color: #F5F1E8;
+      font-family: 'Crimson Text', Georgia, serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #E8C74B;
+      font-family: 'Cinzel', serif;
+    }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .compare > div {
+      border: 1px solid #4A4A4A;
+      padding: 1rem;
+      border-radius: 4px;
+    }
+    .compare h3 {
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #E8C74B;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #4A4A4A;
+      background: rgba(45, 45, 45, 0.7);
+      color: #F5F1E8;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧪 Confronto: Web Component vs Input Standard</h1>
+
+<div class="compare">
+  <div>
+    <h3>❌ Input Standard (HTML)</h3>
+    <input type="text" placeholder="Input HTML semplice..." />
+    <small style="color: #A39D8F; margin-top: 0.5rem; display: block;">Nessun stile speciale, nessuna animazione</small>
+  </div>
+
+  <div>
+    <h3>✓ SimpleInput (Web Component)</h3>
+    <simple-input 
+      label="Test Input"
+      placeholder="Digita qualcosa per vedere l'effetto..."
+    ></simple-input>
+    <small style="color: #A39D8F; margin-top: 0.5rem; display: block;">Bordo oro, glow al focus, Shadow DOM isolato</small>
+  </div>
+</div>
+
+<script type="module">
+  import { SimpleInput } from './src/js/simple-components.js';
+  console.log('✓ SimpleInput importato:', SimpleInput);
+  console.log('Personalizza i componenti premium attualmente nel tuo form, oppure torna a questa versione semplificata.');
+</script>
+
+</body>
+</html>
