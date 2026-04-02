@@ -89,7 +89,7 @@ export function hideError() {
 export function showLoading() {
   const el = document.getElementById('thread-list');
   if (el) {
-    el.innerHTML = '<div class="loading">Consultando i pergameni...</div>';
+    el.innerHTML = '<div class="loading">Consultando le pergamene...</div>';
   }
   const paginationEl = document.getElementById('pagination');
   if (paginationEl) {
