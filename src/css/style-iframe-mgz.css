@@ -219,40 +219,25 @@ h1, h2, h3 {
   transform: scale(1.02) !important;
 }
 
-/* Pagination */
-.pagination {
-  padding: 2rem 1rem !important;
-  display: flex !important;
-  justify-content: center !important;
-  gap: 0.5rem !important;
-  flex-wrap: wrap !important;
-}
-
-.pagination a, .pagination span {
-  padding: 0.4em 1em !important;
-  border-radius: 3px !important;
-  border: 1px solid rgba(74, 158, 255, 0.15) !important;
-  background: rgba(42, 52, 71, 0.7) !important;
-  color: #f0f0f0 !important;
+/* Pagination - Use base CSS with blue color accents */
+.page-btn {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  background: rgba(26, 35, 50, 0.6) !important;
+  color: #e0e8f0 !important;
   transition: all 0.2s ease !important;
-  font-size: clamp(0.85rem, 0.73rem + 0.217vw, 0.95rem) !important;
-  line-height: 1.6 !important;
 }
 
-.pagination a:hover {
+.page-btn:hover {
   background: rgba(74, 158, 255, 0.12) !important;
   border-color: #4a9eff !important;
   color: #66b3ff !important;
-  transform: scale(1.05) !important;
-  box-shadow: 0px 5px 15px -7px rgba(74, 158, 255, 0.25) !important;
 }
 
-.pagination span.current, .pagination a.active {
+.page-btn.active {
   background: linear-gradient(135deg, #4a9eff, #66b3ff) !important;
   color: white !important;
   border-color: #4a9eff !important;
-  font-weight: 600 !important;
-  box-shadow: 0px 8px 16px -4px rgba(74, 158, 255, 0.3) !important;
+  font-weight: 700 !important;
 }
 
 /* Detail View */
@@ -474,25 +459,10 @@ a:hover {
 }
 
 /* Pagination Enhancement */
-.pagination {
-  background: rgba(26, 35, 50, 0.5) !important;
-  padding: 1.5rem !important;
-  border-radius: 3px !important;
-  margin: 2rem auto !important;
-}
-
-.pagination span.current, .pagination a.active {
-  background: linear-gradient(135deg, #4a9eff, #66b3ff) !important;
-  color: white !important;
-  border-color: #4a9eff !important;
-  font-weight: 700 !important;
-  box-shadow: 0px 8px 16px -4px rgba(74, 158, 255, 0.3) !important;
-}
-
-.pagination a:hover {
-  background: rgba(74, 158, 255, 0.2) !important;
-  border-color: #4a9eff !important;
-  box-shadow: 0px 5px 12px -3px rgba(74, 158, 255, 0.2) !important;
+#pagination {
+  padding: 1rem 1.5rem !important;
+  background: rgba(26, 35, 50, 0.9) !important;
+  border-top: 1px solid rgba(74, 158, 255, 0.15) !important;
 }
 
 /* Tables - Full override */
