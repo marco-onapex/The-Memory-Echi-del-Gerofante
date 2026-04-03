@@ -42,8 +42,8 @@
 
     .main-content {
       width: 100%;
-      padding: var(--spacing-md);
-      gap: var(--spacing-md);
+      flex: 1;
+      padding: var(--spacing-xl);
     }
 
     /* Sidebar toggle removed - archives no longer used */
@@ -52,37 +52,6 @@
     .container {
       padding: 0;
       max-width: 100%;
-    }
-
-    .filters-bar {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-md);
-    }
-
-    .filter-group {
-      flex: 1 1 auto !important;
-      min-width: auto !important;
-    }
-
-    .btn-search {
-      width: 100%;
-      align-self: auto;
-    }
-
-    /* Mobile-first per iframe */
-    @media (max-width: 768px) {
-      .sidebar.active {
-        width: 100%;
-      }
-
-      .sidebar.active ~ .main-content {
-        margin-left: 0;
-      }
-
-      .filters-bar {
-        grid-template-columns: 1fr;
-        padding: var(--spacing-sm);
-      }
     }
 
     /* Info panel - uso gli stili dalla versione completa */
