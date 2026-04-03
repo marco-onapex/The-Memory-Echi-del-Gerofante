@@ -6,21 +6,21 @@
 
 :root {
   /* 【PALETTE MIRACLE GAMING ZONE】*/
-  /* Blue-Green modern gaming aesthetic */
-  --gold-primary:  #0693e3;     /* Primary: Bright Blue (Miracle brand) */
-  --gold-light:    #0866ff;     /* Light: Lighter Blue */
-  --gold-dark:     #004a59;     /* Dark: Dark Blue */
+  /* Blue + Gold gaming aesthetic (matching site design) */
+  --gold-primary:  #FDB71A;     /* Primary: GOLD/YELLOW accent (Miracle brand) */
+  --gold-light:    #FFD54F;     /* Light: Lighter Yellow */
+  --gold-dark:     #E6A700;     /* Dark: Dark Gold */
   
-  /* Accent colors (gaming vibrancy) */
-  --copper:        #00d084;     /* Accent: Fresh Green */
-  --copper-light:  #1bd760;     /* Light: Lighter Green */
-  --amber:         #02e49b;     /* Complementary: Teal */
-  --bronze:        #005a87;     /* Dark: Dark Teal */
+  /* Accent colors (Miracle theme) */
+  --copper:        #0693e3;     /* De-emphasized: Blue accent */
+  --copper-light:  #0866ff;     /* Light: Lighter Blue */
+  --amber:         #FDB71A;     /* Complementary: Gold (matches primary) */
+  --bronze:        #1a3a52;     /* Dark: Dark Blue-Navy */
   
-  /* Sfondi (Miracle Gaming Zone dark theme) */
-  --stone-bg:      #1e1f26;     /* Base: Miracle dark background */
-  --stone-light:   #24292d;     /* Lighter: Subtle contrast */
-  --stone-medium:  #2c3136;     /* Medium: Optimal band */
+  /* Sfondi (Miracle Gaming Zone dark blue theme) */
+  --stone-bg:      #1a2332;     /* Base: Navy-blue background (more blue than #1e1f26) */
+  --stone-light:   #2a3447;     /* Lighter: Subtle contrast */
+  --stone-medium:  #3d4f63;     /* Medium: Optimal band */
   
   /* Testo (WCAG AAA - Contrast verificato) */
   --ink:           #f0f0f0;     /* Primary text: Light gray */
@@ -33,10 +33,10 @@
   --crimson-dark:  #e21b24;     /* Dark: Dark Red */
   --accent-blue:   #0693e3;     /* Blue: Primary Blue */
   
-  /* Bordi e separatori (Miracle theme) */
+  /* Bordi e separatori (Miracle theme with gold) */
   --border:        #40464d;     /* Standard border: Mid-tone */
   --border-light:  #313131;     /* Light border: Subtle contrast */
-  --border-gold:   rgba(6, 147, 227, 0.15); /* Subtle blue: lower opacity */
+  --border-gold:   rgba(253, 183, 26, 0.18); /* Gold accent border */
   
   /* 【FONT FAMILIES - MIRACLE GAMING ZONE】*/
   /* Montserrat: Modern sans-serif (Miracle Gaming Zone standard) */
@@ -44,42 +44,42 @@
   /* Raleway: Display font for headings */
   --font-serif-display: 'Raleway', 'Trebuchet MS', sans-serif;
   
-  /* 【SHADOW GLOW - BLUE THEME】*/
-  --shadow-glow:     0 0 8px rgba(6, 147, 227, 0.12); /* Subtle glow (blue) */
+  /* 【SHADOW GLOW - GOLD THEME】*/
+  --shadow-glow:     0 0 8px rgba(253, 183, 26, 0.15); /* Subtle glow (gold) */
 }
 
-/* Update background gradients for blue/green theme */
+/* Update background gradients for blue/gold theme */
 body {
   background-image:
-    radial-gradient(ellipse at 20% 10%, rgba(6, 147, 227, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(0, 208, 132, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 10%, rgba(253, 183, 26, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(6, 147, 227, 0.06) 0%, transparent 55%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.01'/%3E%3C/svg%3E") !important;
 }
 
-/* Update header shadow for blue theme */
+/* Update header shadow for gold+blue theme */
 header {
   box-shadow: 
     inset 0 -8px 16px rgba(0,0,0,0.5),
-    0 8px 24px rgba(6, 147, 227, 0.15) !important;
+    0 8px 24px rgba(253, 183, 26, 0.18) !important;
 }
 
 .header-ornament {
-  text-shadow: 0 0 8px rgba(6, 147, 227, 0.12) !important;
+  text-shadow: 0 0 8px rgba(253, 183, 26, 0.15) !important;
 }
 
 h1 {
   text-shadow: 
-    0 0 12px rgba(6, 147, 227, 0.2),
+    0 0 12px rgba(253, 183, 26, 0.2),
     0 2px 4px rgba(0,0,0,0.6) !important;
 }
 
-/* Update filters bar shadow for blue theme */
+/* Update filters bar shadow for gold+blue theme */
 .filters-bar {
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(6, 147, 227, 0.12) !important;
+    inset 0 1px 0 rgba(253, 183, 26, 0.12) !important;
 }
 
 .filters-bar::before {
-  background: linear-gradient(90deg, transparent, rgba(6, 147, 227, 0.25), transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(253, 183, 26, 0.3), transparent) !important;
 }
