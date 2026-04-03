@@ -4,8 +4,8 @@
 
 È stata creata una pagina speciale ottimizzata per l'embedding in WordPress:
 
-**File**: `iframe-page.html`
-**URL**: `https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-page.html`
+**File**: `iframe-mgz.html`
+**URL**: `https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-mgz.html`
 
 ## Caratteristiche
 
@@ -25,7 +25,7 @@ In una pagina WordPress, modalità HTML/Code:
 ```html
 <iframe 
   id="tm-archive"
-  src="https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-page.html"
+  src="https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-mgz.html"
   width="100%"
   height="800"
   style="border: 2px solid #D4AF37; border-radius: 8px; background: #1a1a1a;"
@@ -52,8 +52,8 @@ Se usi Elementor:
 ### 📌 Metodo 3: Plugin Advanced iFrames
 
 1. Installa: **Advanced iFrames**
-2. Crea un'iframe shortcode con URL: `https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-page.html`
-3. Aggiungi al contenuto con `[advanced_iframe url="https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-page.html"]`
+2. Crea un'iframe shortcode con URL: `https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-mgz.html`
+3. Aggiungi al contenuto con `[advanced_iframe url="https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-mgz.html"]`
 
 ## Personalizzazioni
 
@@ -116,7 +116,7 @@ Se usi Elementor:
 ## URL della pagina iFrame
 
 ```
-https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-page.html
+https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante/iframe-mgz.html
 ```
 
 ---
