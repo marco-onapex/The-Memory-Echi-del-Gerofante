@@ -340,11 +340,236 @@ a {
 }
 
 a:hover {
-  color: #FDB71A !important;
+  color: #66b3ff !important;
 }
 
 /* Focus states - Accessibility */
 *:focus {
   outline: 2px solid #4a9eff !important;
   outline-offset: 2px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPLETE MIRACLE GAMING ZONE STYLE OVERRIDE
+   Full restyling to match actual site appearance
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Thread List Container */
+.thread-list-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+/* Thread List Header (DISCUSSIONE, RISPOSTE, ULTIMO MESSAGGIO) */
+.thread-list-header {
+  display: flex !important;
+  width: 100% !important;
+  background: linear-gradient(135deg, #5a6f7a, #6b7f8b) !important;
+  color: #f5f5f5 !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 3px 3px 0 0 !important;
+  border-bottom: 2px solid rgba(74, 158, 255, 0.2) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.thread-list-header > * {
+  flex: 1 !important;
+  padding: 0 !important;
+}
+
+.thread-list-header > *:last-child {
+  text-align: center !important;
+}
+
+/* Thread Items - Row Style */
+.thread-item {
+  background: rgba(30, 45, 61, 0.9) !important;
+  border-left: 4px solid #4a9eff !important;
+  border-radius: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.12) !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 1.5rem !important;
+  transition: all 0.25s ease !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.thread-item:first-of-type {
+  border-radius: 3px 3px 0 0 !important;
+}
+
+.thread-item:last-of-type {
+  border-radius: 0 0 3px 3px !important;
+}
+
+.thread-item:hover {
+  background: rgba(42, 60, 80, 1) !important;
+  border-left-color: #66b3ff !important;
+  box-shadow: inset 0 0 12px rgba(74, 158, 255, 0.08) !important;
+  transform: none !important;
+}
+
+/* Stats Bar - Enhanced */
+.stats-bar {
+  background: linear-gradient(135deg, rgba(42, 52, 71, 0.8), rgba(50, 65, 85, 0.8)) !important;
+  border-left: 4px solid #4a9eff !important;
+  border-radius: 3px !important;
+  padding: 1.5rem 2rem !important;
+  color: #e0e8f0 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Pagination Enhancement */
+.pagination {
+  background: rgba(26, 35, 50, 0.5) !important;
+  padding: 1.5rem !important;
+  border-radius: 3px !important;
+  margin: 2rem auto !important;
+}
+
+.pagination span.current, .pagination a.active {
+  background: linear-gradient(135deg, #9b8b6a, #8b7058) !important;
+  color: white !important;
+  border-color: #8b7058 !important;
+  font-weight: 700 !important;
+  box-shadow: 0px 8px 16px -4px rgba(139, 112, 88, 0.3) !important;
+}
+
+.pagination a:hover {
+  background: rgba(74, 158, 255, 0.2) !important;
+  border-color: #4a9eff !important;
+  box-shadow: 0px 5px 12px -3px rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Tables - Full override */
+table, .thread-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: transparent !important;
+}
+
+thead, .table-header {
+  background: linear-gradient(135deg, #5a6f7a, #6b7f8b) !important;
+  color: #f5f5f5 !important;
+}
+
+tbody tr, tr {
+  background: rgba(30, 45, 61, 0.9) !important;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.12) !important;
+  transition: background 0.2s ease !important;
+}
+
+tbody tr:hover, tr:hover {
+  background: rgba(42, 60, 80, 1) !important;
+}
+
+td, th {
+  padding: 1rem 1.5rem !important;
+  border: none !important;
+}
+
+th {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Detail View Enhancement */
+.detail-header {
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.15), rgba(74, 158, 255, 0.08)) !important;
+  border: 1px solid rgba(74, 158, 255, 0.2) !important;
+  padding: 2rem 2.5rem !important;
+  border-radius: 3px !important;
+}
+
+.detail-title {
+  font-size: 1.75rem !important;
+  color: #66b3ff !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+/* Post Items - Enhanced */
+.post-item {
+  background: rgba(30, 45, 61, 0.8) !important;
+  border: 1px solid rgba(74, 158, 255, 0.15) !important;
+  border-left: 4px solid #4a9eff !important;
+  padding: 1.75rem 2.25rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 3px !important;
+}
+
+.post-item:hover {
+  border-left-color: #66b3ff !important;
+  box-shadow: inset 0 0 8px rgba(74, 158, 255, 0.05) !important;
+}
+
+/* Info Panel - Full override */
+.info-panel {
+  background: rgba(42, 52, 71, 0.9) !important;
+  border: 1px solid rgba(74, 158, 255, 0.15) !important;
+  border-radius: 3px !important;
+  padding: 1.5rem 2rem !important;
+}
+
+/* Meta Info */
+.meta-info {
+  background: rgba(50, 65, 85, 0.6) !important;
+  border-left: 4px solid #4a9eff !important;
+  padding: 1.25rem 1.75rem !important;
+}
+
+/* Buttons - Refined */
+.btn-search, .btn-premium, .btn-back {
+  border-radius: 3px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-back {
+  background: rgba(74, 158, 255, 0.15) !important;
+  border: 1px solid #4a9eff !important;
+  color: #66b3ff !important;
+}
+
+.btn-back:hover {
+  background: #4a9eff !important;
+  color: white !important;
+}
+
+/* Form Elements - Final polish */
+.form-input, .premium-input, .premium-date {
+  background: rgba(26, 35, 50, 0.95) !important;
+  border: 1px solid rgba(74, 158, 255, 0.25) !important;
+  color: #e8f0f7 !important;
+}
+
+.form-input:focus, .premium-input:focus, .premium-date:focus {
+  background: rgba(30, 50, 70, 1) !important;
+  border-color: #66b3ff !important;
+  box-shadow: 0 0 12px rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Filters Bar - Refined */
+.filters-bar {
+  background: rgba(42, 52, 71, 0.9) !important;
+  border-radius: 3px !important;
+  border: 1px solid rgba(74, 158, 255, 0.12) !important;
+}
+
+/* Typography Refinement */
+.thread-item strong {
+  color: #f5f5f5 !important;
+}
+
+.thread-item em {
+  color: #cbd5e0 !important;
+  font-style: italic !important;
 }
