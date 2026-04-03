@@ -156,25 +156,45 @@ h1, h2, h3 {
   transform: scale(1.02) !important;
 }
 
-/* Info Panel - Enhanced styling (entry card style) */
+/* Info Panel - Standard layout with blue colors */
 .info-panel {
-  background: rgba(42, 52, 71, 0.7) !important;
-  border-radius: 3px !important;
-  padding: 1.25rem 2.375rem !important;
-  border: none !important;
-  box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border: 1px solid rgba(74, 158, 255, 0.15) !important;
+  box-shadow: 0px 15px 25px -7px rgba(74, 158, 255, 0.15) !important;
+  overflow: visible !important;
 }
 
-/* Stats Bar */
+/* Stats Bar - Standard layout with blue colors */
 .stats-bar {
-  padding: 1.25rem 2.375rem !important;
-  background: rgba(26, 35, 50, 0.5) !important;
-  border-radius: 3px !important;
-  border-left: 4px solid #4a9eff !important;
-  margin-bottom: 1.5rem !important;
-  font-size: clamp(0.9rem, 0.8rem + 0.217vw, 1rem) !important;
+  display: flex !important;
+  gap: 1.5rem !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1rem 1.5rem !important;
+  background: rgba(26, 35, 50, 0.9) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.15) !important;
+  margin-bottom: 0 !important;
+  font-size: 0.9rem !important;
   line-height: 1.6 !important;
-  box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.03) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border-left: none !important;
+}
+
+.stats-bar span {
+  font-family: 'Montserrat', 'Segoe UI', sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: #9da5b1 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.stats-bar strong {
+  color: #66b3ff !important;
+  font-weight: 700 !important;
 }
 
 /* Thread List */
@@ -331,6 +351,27 @@ body {
 
 .detail-posts {
   font-size: clamp(0.95rem, 0.85rem + 0.217vw, 1.05rem) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+  overflow: visible !important;
+}
+
+.detail-posts .post-card, .detail-posts .post-item {
+  border-left: none !important;
+  background: transparent !important;
+  padding: 1rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.08) !important;
+}
+
+.detail-posts .post-card:last-child, .detail-posts .post-item:last-child {
+  border-bottom: none !important;
 }
 
 /* Link styling */
@@ -415,14 +456,21 @@ a:hover {
   transform: none !important;
 }
 
-/* Stats Bar - Enhanced */
+/* Stats Bar - Standard layout with blue colors */
 .stats-bar {
-  background: linear-gradient(135deg, rgba(42, 52, 71, 0.8), rgba(50, 65, 85, 0.8)) !important;
-  border-left: 4px solid #4a9eff !important;
-  border-radius: 3px !important;
-  padding: 1.5rem 2rem !important;
+  display: flex !important;
+  gap: 1.5rem !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1rem 1.5rem !important;
+  background: rgba(26, 35, 50, 0.9) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.15) !important;
   color: #e0e8f0 !important;
-  font-size: 0.95rem !important;
+  font-size: 0.9rem !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border-left: none !important;
 }
 
 /* Pagination Enhancement */
@@ -511,12 +559,16 @@ th {
   box-shadow: inset 0 0 8px rgba(74, 158, 255, 0.05) !important;
 }
 
-/* Info Panel - Full override */
+/* Info Panel - Full override with standard layout */
 .info-panel {
-  background: rgba(42, 52, 71, 0.9) !important;
+  display: flex !important;
+  flex-direction: column !important;
   border: 1px solid rgba(74, 158, 255, 0.15) !important;
-  border-radius: 3px !important;
-  padding: 1.5rem 2rem !important;
+  box-shadow: 0px 15px 25px -7px rgba(74, 158, 255, 0.15) !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
 }
 
 /* Meta Info */
