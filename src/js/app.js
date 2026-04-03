@@ -59,12 +59,6 @@ export async function search(page = 1) {
   const filters = getFiltersFromUI();
   filters.page = page;
 
-  // Aggiungi il filtro anno se selezionato
-  const yearFilter = getCurrentYearFilter();
-  if (yearFilter !== 'all') {
-    filters.year = parseInt(yearFilter);
-  }
-
   // Sincronizza router con pagina e parametri di ricerca
   router.currentPage = page;
   router.searchParams = {
