@@ -646,7 +646,6 @@ premium-button[size="md"] {
   flex-direction: column;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-md);
-  margin-bottom: var(--spacing-lg);
   overflow: visible;
 }
 
