@@ -11,11 +11,11 @@
   --gold-light:    #66b3ff;     /* Light: Lighter Blue */
   --gold-dark:     #2d5fa8;     /* Dark: Deep Blue */
   
-  /* Warm Accent colors (Gold/Bronze - strategic use) */
-  --copper:        #c9a961;     /* Accent: Warm Gold (from stats badges) */
-  --copper-light:  #d4b876;     /* Light: Light Gold */
-  --amber:         #e8c99d;     /* Complementary: Sand/Beige */
-  --bronze:        #8b7038;     /* Dark: Bronze */
+  /* Blue accent colors (pure blue theme) */
+  --copper:        #4a9eff;     /* Accent: Primary Blue */
+  --copper-light:  #66b3ff;     /* Light: Lighter Blue */
+  --amber:         #7fc3ff;     /* Complementary: Light Blue */
+  --bronze:        #2d5fa8;     /* Dark: Deep Blue */
   
   /* Sfondi (Professional dark blue) */
   --stone-bg:      #1e2d3d;     /* Base: Navy professional */
@@ -36,7 +36,7 @@
   /* Bordi - Professional blue tones */
   --border:        #3a4f62;     /* Standard border: Mid-tone */
   --border-light:  #2a3f52;     /* Light border: Subtle */
-  --border-gold:   rgba(201, 169, 97, 0.15); /* Gold accent (subtle) */
+  --border-gold:   rgba(74, 158, 255, 0.15); /* Blue accent (subtle) */
   
   /* 【FONT FAMILIES】*/
   --font-serif:      'Montserrat', 'Segoe UI', 'Helvetica Neue', sans-serif;
@@ -46,15 +46,15 @@
   --shadow-glow:     0 0 12px rgba(74, 158, 255, 0.15); /* Blue glow */
 }
 
-/* Update background gradients for blue/gold theme */
+/* Update background gradients for pure blue theme */
 body {
   background-image:
     radial-gradient(ellipse at 20% 10%, rgba(74, 158, 255, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(201, 169, 97, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(74, 158, 255, 0.04) 0%, transparent 55%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.01'/%3E%3C/svg%3E") !important;
 }
 
-/* Update header shadow for gold+blue theme */
+/* Update header shadow for blue theme */
 header {
   box-shadow: 
     inset 0 -8px 16px rgba(0,0,0,0.5),
@@ -71,7 +71,7 @@ h1 {
     0 2px 4px rgba(0,0,0,0.6) !important;
 }
 
-/* Update filters bar shadow for gold+blue theme */
+/* Update filters bar shadow for blue theme */
 .filters-bar {
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.4),
@@ -170,7 +170,7 @@ h1, h2, h3 {
   padding: 1.25rem 2.375rem !important;
   background: rgba(26, 35, 50, 0.5) !important;
   border-radius: 3px !important;
-  border-left: 4px solid #c9a961 !important;
+  border-left: 4px solid #4a9eff !important;
   margin-bottom: 1.5rem !important;
   font-size: clamp(0.9rem, 0.8rem + 0.217vw, 1rem) !important;
   line-height: 1.6 !important;
@@ -228,9 +228,9 @@ h1, h2, h3 {
 }
 
 .pagination span.current, .pagination a.active {
-  background: linear-gradient(135deg, #c9a961, #d4b876) !important;
+  background: linear-gradient(135deg, #4a9eff, #66b3ff) !important;
   color: white !important;
-  border-color: #c9a961 !important;
+  border-color: #4a9eff !important;
   font-weight: 600 !important;
   box-shadow: 0px 15px 25px -7px rgba(253, 183, 26, 0.2) !important;
 }
@@ -238,7 +238,7 @@ h1, h2, h3 {
 /* Detail View */
 .detail-header {
   padding: 1.25rem 2.375rem !important;
-  background: linear-gradient(90deg, rgba(74, 158, 255, 0.08), rgba(201, 169, 97, 0.08)) !important;
+  background: linear-gradient(90deg, rgba(74, 158, 255, 0.08), rgba(74, 158, 255, 0.08)) !important;
   border-radius: 3px !important;
   border-bottom: 2px solid rgba(74, 158, 255, 0.25) !important;
   margin-bottom: 2rem !important;
@@ -273,7 +273,7 @@ h1, h2, h3 {
 /* Meta Info Boxes */
 .meta-info {
   background: rgba(61, 79, 99, 0.4) !important;
-  border-left: 3px solid #c9a961 !important;
+  border-left: 3px solid #4a9eff !important;
   padding: 1rem 1.5rem !important;
   border-radius: 3px !important;
   margin: 1rem 0 !important;
