@@ -6,7 +6,6 @@
 import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';
-import { initApp, setupEventListeners } from './app.js';
 import { router } from './router.js';
 
 let supabaseClient = null;
