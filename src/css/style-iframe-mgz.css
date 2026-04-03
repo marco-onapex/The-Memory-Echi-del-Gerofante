@@ -68,12 +68,7 @@ h1 {
     0 2px 4px rgba(0,0,0,0.6) !important;
 }
 
-/* Update filters bar shadow for blue theme */
-.filters-bar {
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(74, 158, 255, 0.12) !important;
-}
+/* Update filters bar shadow for blue theme */\n.filters-bar {\n  box-shadow: \n    0 8px 24px rgba(0, 0, 0, 0.4),\n    inset 0 1px 0 rgba(74, 158, 255, 0.12) !important;\n  border-top-left-radius: 15px !important;\n  border-top-right-radius: 15px !important;\n  border-bottom-right-radius: 15px !important;\n  border-bottom-left-radius: 15px !important;\n}
 
 .filters-bar::before {
   background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.15), transparent) !important;
@@ -103,7 +98,10 @@ h1, h2, h3 {
 
 /* Spacing & Layout - Generous like their site */
 .filters-bar {
-  border-radius: 3px !important;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
   padding: 1.5rem 2.375rem !important;
   margin-bottom: 2.5rem !important;
   background: linear-gradient(135deg, rgba(42, 52, 71, 0.95), rgba(61, 79, 99, 0.95)) !important;
@@ -579,8 +577,10 @@ th {
 /* Filters Bar - Refined */
 .filters-bar {
   background: rgba(42, 52, 71, 0.9) !important;
-  border-radius: 3px !important;
-  border: 1px solid rgba(74, 158, 255, 0.12) !important;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
 }
 
 /* Typography Refinement */
