@@ -83,3 +83,197 @@ h1 {
 .filters-bar::before {
   background: linear-gradient(90deg, transparent, rgba(253, 183, 26, 0.3), transparent) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENHANCED INTEGRATION - MIRACLE GAMING ZONE STYLING
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Spacing & Layout */
+.filters-bar {
+  border-radius: 8px !important;
+  padding: 2rem 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+  background: linear-gradient(135deg, rgba(42, 52, 71, 0.95), rgba(61, 79, 99, 0.95)) !important;
+}
+
+.form-input, .premium-input, .premium-date {
+  border-radius: 6px !important;
+  border: 2px solid rgba(253, 183, 26, 0.2) !important;
+  padding: 0.75rem 1rem !important;
+  background: rgba(26, 35, 50, 0.8) !important;
+  transition: all 0.3s ease-out !important;
+}
+
+.form-input:focus, .premium-input:focus, .premium-date:focus {
+  border-color: #FDB71A !important;
+  box-shadow: 0 0 8px rgba(253, 183, 26, 0.3) !important;
+  background: rgba(26, 35, 50, 0.95) !important;
+}
+
+/* Buttons - Miracle Gaming Zone style (blue gradient) */
+.btn-search, .btn-premium {
+  background: linear-gradient(135deg, #0693e3, #0866ff) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.75rem 1.5rem !important;
+  color: white !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease-out !important;
+  box-shadow: 0 4px 12px rgba(6, 147, 227, 0.3) !important;
+}
+
+.btn-search:hover, .btn-premium:hover {
+  background: linear-gradient(135deg, #0866ff, #0757fe) !important;
+  box-shadow: 0 6px 16px rgba(6, 147, 227, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Info Panel - Enhanced styling */
+.info-panel {
+  background: rgba(42, 52, 71, 0.6) !important;
+  border-radius: 8px !important;
+  padding: 2rem !important;
+  border: 1px solid rgba(253, 183, 26, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Stats Bar */
+.stats-bar {
+  padding: 1.5rem !important;
+  background: rgba(61, 79, 99, 0.5) !important;
+  border-radius: 6px !important;
+  border-left: 4px solid #FDB71A !important;
+  margin-bottom: 1.5rem !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Thread List */
+.thread-list {
+  gap: 1rem !important;
+}
+
+.thread-item {
+  background: rgba(26, 35, 50, 0.7) !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(253, 183, 26, 0.12) !important;
+  padding: 1.5rem !important;
+  transition: all 0.3s ease-out !important;
+  cursor: pointer !important;
+}
+
+.thread-item:hover {
+  background: rgba(42, 52, 71, 0.85) !important;
+  border-color: rgba(253, 183, 26, 0.25) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), inset 0 0 1px rgba(253, 183, 26, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Pagination */
+.pagination {
+  padding: 2rem 1rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  flex-wrap: wrap !important;
+}
+
+.pagination a, .pagination span {
+  padding: 0.6rem 0.9rem !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(253, 183, 26, 0.15) !important;
+  background: rgba(42, 52, 71, 0.6) !important;
+  color: #f0f0f0 !important;
+  transition: all 0.25s ease-out !important;
+  font-size: 0.9rem !important;
+}
+
+.pagination a:hover {
+  background: linear-gradient(135deg, rgba(253, 183, 26, 0.2), rgba(6, 147, 227, 0.2)) !important;
+  border-color: #FDB71A !important;
+  color: #FDB71A !important;
+}
+
+.pagination span.current, .pagination a.active {
+  background: #FDB71A !important;
+  color: #1a2332 !important;
+  border-color: #FDB71A !important;
+  font-weight: 600 !important;
+}
+
+/* Detail View */
+.detail-header {
+  padding: 2rem !important;
+  background: linear-gradient(90deg, rgba(253, 183, 26, 0.08), rgba(6, 147, 227, 0.08)) !important;
+  border-radius: 8px !important;
+  border-bottom: 2px solid rgba(253, 183, 26, 0.2) !important;
+  margin-bottom: 2rem !important;
+}
+
+.detail-title {
+  color: #FDB71A !important;
+  font-size: 1.75rem !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.btn-back {
+  background: rgba(6, 147, 227, 0.15) !important;
+  border: 1px solid rgba(6, 147, 227, 0.3) !important;
+  color: #0693e3 !important;
+  border-radius: 6px !important;
+  padding: 0.6rem 1.2rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease-out !important;
+  font-weight: 600 !important;
+}
+
+.btn-back:hover {
+  background: #0693e3 !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(6, 147, 227, 0.4) !important;
+}
+
+/* Meta Info Boxes */
+.meta-info {
+  background: rgba(61, 79, 99, 0.4) !important;
+  border-left: 3px solid #FDB71A !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 4px !important;
+  margin: 1rem 0 !important;
+}
+
+/* Post item */
+.post-item {
+  background: rgba(26, 35, 50, 0.6) !important;
+  border: 1px solid rgba(253, 183, 26, 0.1) !important;
+  border-radius: 6px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  line-height: 1.7 !important;
+}
+
+/* Filter labels */
+.filter-label {
+  color: #FFD54F !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+}
+
+/* Separators */
+hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(253, 183, 26, 0.2), transparent) !important;
+  margin: 2rem 0 !important;
+}
+
+/* Error message styling */
+.error-message {
+  background: rgba(239, 65, 85, 0.15) !important;
+  border-left: 4px solid #ef4155 !important;
+  border-radius: 6px !important;
+  padding: 1rem 1.5rem !important;
+  color: #ff9999 !important;
+  margin: 1rem 0 !important;
+}
