@@ -5,52 +5,52 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* 【PALETTE MIRACLE GAMING ZONE】*/
-  /* Blue-Navy gaming aesthetic (NO GOLD) */
-  --gold-primary:  #0693e3;     /* Primary: Bright Blue */
-  --gold-light:    #0866ff;     /* Light: Lighter Blue */
-  --gold-dark:     #004a59;     /* Dark: Dark Blue */
+  /* 【PALETTE OTTIMIZZATA - FORUM THEME】*/
+  /* Based on forum screenshot - precise color matching */
+  --gold-primary:  #0088ff;     /* Primary: Bright Blue (from CERCA button) */
+  --gold-light:    #00b0ff;     /* Light: Lighter Blue */
+  --gold-dark:     #0055aa;     /* Dark: Dark Blue */
   
-  /* Accent colors (Blue theme only) */
-  --copper:        #0693e3;     /* Primary: Blue accent */
-  --copper-light:  #0866ff;     /* Light: Lighter Blue */
-  --amber:         #CBD5E0;     /* Complementary: Light gray (no gold) */
+  /* Accent colors (forum palette) */
+  --copper:        #0088ff;     /* Primary: Blue accent */
+  --copper-light:  #00b0ff;     /* Light: Lighter Blue */
+  --amber:         #CBD5E0;     /* Complementary: Light gray */
   --bronze:        #1a3a52;     /* Dark: Dark Blue-Navy */
   
-  /* Sfondi (Miracle Gaming Zone dark blue theme) */
-  --stone-bg:      #1a2332;     /* Base: Navy-blue background */
-  --stone-light:   #2a3447;     /* Lighter: Subtle contrast */
-  --stone-medium:  #3d4f63;     /* Medium: Optimal band */
+  /* Sfondi (forum theme - greyish-blue) */
+  --stone-bg:      #1e3a4c;     /* Base: Forum navy-blue background */
+  --stone-light:   #2d4659;     /* Lighter: Subtle contrast */
+  --stone-medium:  #3d5566;     /* Medium: Optimal band */
   
-  /* Testo (WCAG AAA) */
-  --ink:           #f0f0f0;     /* Primary text: Light gray */
-  --ink-secondary: #cbd5e0;     /* Secondary text: Medium gray */
-  --ink-faded:     #a0aec0;     /* Tertiary text: Dimmed */
-  --ink-muted:     #718096;     /* Ultra-light text: Very dim */
+  /* Testo (neutral grays) */
+  --ink:           #e8f0f7;     /* Primary text: Very light gray-blue */
+  --ink-secondary: #b8c5d4;     /* Secondary text: Medium gray */
+  --ink-faded:     #8a99ac;     /* Tertiary text: Dimmed */
+  --ink-muted:     #6b7a8f;     /* Ultra-light text: Very dim */
   
   /* Accenti Status */
-  --crimson:       #ef4155;     /* Attention: Bright Red */
-  --crimson-dark:  #e21b24;     /* Dark: Dark Red */
-  --accent-blue:   #0693e3;     /* Blue: Primary Blue */
+  --crimson:       #ff6b3d;     /* Attention: Orange-Red (from pagination) */
+  --crimson-dark:  #e84c1f;     /* Dark: Dark Orange */
+  --accent-blue:   #0088ff;     /* Blue: Primary Blue */
   
-  /* Bordi - Blue/Gray (NO GOLD) */
-  --border:        #40464d;     /* Standard border: Mid-tone */
-  --border-light:  #313131;     /* Light border: Subtle contrast */
-  --border-gold:   rgba(6, 147, 227, 0.15); /* Blue accent border */
+  /* Bordi - Blue tones */
+  --border:        #3d5566;     /* Standard border: Mid-tone */
+  --border-light:  #2d4659;     /* Light border: Subtle contrast */
+  --border-gold:   rgba(0, 136, 255, 0.12); /* Blue accent border */
   
-  /* 【FONT FAMILIES - MIRACLE GAMING ZONE】*/
+  /* 【FONT FAMILIES】*/
   --font-serif:      'Montserrat', 'Segoe UI', 'Helvetica Neue', sans-serif;
   --font-serif-display: 'Raleway', 'Trebuchet MS', sans-serif;
   
-  /* 【SHADOW GLOW - BLUE THEME】*/
-  --shadow-glow:     0 0 8px rgba(6, 147, 227, 0.12); /* Blue glow (no gold) */
+  /* 【SHADOW GLOW - BLUE】*/
+  --shadow-glow:     0 0 8px rgba(0, 136, 255, 0.12); /* Blue glow */
 }
 
 /* Update background gradients for blue/gold theme */
 body {
   background-image:
-    radial-gradient(ellipse at 20% 10%, rgba(6, 147, 227, 0.05) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(6, 147, 227, 0.03) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 10%, rgba(0, 136, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(0, 136, 255, 0.03) 0%, transparent 55%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.01'/%3E%3C/svg%3E") !important;
 }
 
@@ -58,16 +58,16 @@ body {
 header {
   box-shadow: 
     inset 0 -8px 16px rgba(0,0,0,0.5),
-    0 8px 24px rgba(6, 147, 227, 0.15) !important;
+    0 8px 24px rgba(0, 136, 255, 0.15) !important;
 }
 
 .header-ornament {
-  text-shadow: 0 0 8px rgba(6, 147, 227, 0.12) !important;
+  text-shadow: 0 0 8px rgba(0, 136, 255, 0.12) !important;
 }
 
 h1 {
   text-shadow: 
-    0 0 12px rgba(6, 147, 227, 0.2),
+    0 0 12px rgba(0, 136, 255, 0.2),
     0 2px 4px rgba(0,0,0,0.6) !important;
 }
 
@@ -75,11 +75,11 @@ h1 {
 .filters-bar {
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(6, 147, 227, 0.1) !important;
+    inset 0 1px 0 rgba(0, 136, 255, 0.1) !important;
 }
 
 .filters-bar::before {
-  background: linear-gradient(90deg, transparent, rgba(6, 147, 227, 0.2), transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 136, 255, 0.2), transparent) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -115,7 +115,7 @@ h1, h2, h3 {
 
 .form-input, .premium-input, .premium-date {
   border-radius: 3px !important;
-  border: 1px solid rgba(6, 147, 227, 0.15) !important;
+  border: 1px solid rgba(0, 136, 255, 0.15) !important;
   padding: 0.4em 0.5em !important;
   background: rgba(26, 35, 50, 0.9) !important;
   transition: all 0.2s ease !important;
@@ -125,15 +125,15 @@ h1, h2, h3 {
 }
 
 .form-input:focus, .premium-input:focus, .premium-date:focus {
-  border-color: rgba(6, 147, 227, 0.35) !important;
-  color: #0866ff !important;
-  box-shadow: 0px 5px 15px -7px rgba(6, 147, 227, 0.2) !important;
+  border-color: rgba(0, 136, 255, 0.35) !important;
+  color: #00b0ff !important;
+  box-shadow: 0px 5px 15px -7px rgba(0, 136, 255, 0.2) !important;
   background: rgba(26, 35, 50, 1) !important;
 }
 
 /* Buttons - Miracle Gaming Zone exact style */
 .btn-search, .btn-premium {
-  background: linear-gradient(135deg, #0693e3, #0866ff) !important;
+  background: linear-gradient(135deg, #0088ff, #00b0ff) !important;
   border: none !important;
   border-radius: 3px !important;
   padding: 0.4em 1em !important;
@@ -151,7 +151,7 @@ h1, h2, h3 {
 }
 
 .btn-search:hover, .btn-premium:hover {
-  background: linear-gradient(135deg, #0866ff, #0757fe) !important;
+  background: linear-gradient(135deg, #00b0ff, #00a0ff) !important;
   box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.1) !important;
   transform: scale(1.02) !important;
 }
@@ -170,7 +170,7 @@ h1, h2, h3 {
   padding: 1.25rem 2.375rem !important;
   background: rgba(26, 35, 50, 0.5) !important;
   border-radius: 3px !important;
-  border-left: 4px solid #0693e3 !important;
+  border-left: 4px solid #0088ff !important;
   margin-bottom: 1.5rem !important;
   font-size: clamp(0.9rem, 0.8rem + 0.217vw, 1rem) !important;
   line-height: 1.6 !important;
@@ -185,7 +185,7 @@ h1, h2, h3 {
 .thread-item {
   background: rgba(26, 35, 50, 0.8) !important;
   border-radius: 3px !important;
-  border: 1px solid rgba(6, 147, 227, 0.08) !important;
+  border: 1px solid rgba(0, 136, 255, 0.08) !important;
   padding: 1.25rem 2.375rem !important;
   transition: all 0.2s ease !important;
   cursor: pointer !important;
@@ -194,7 +194,7 @@ h1, h2, h3 {
 
 .thread-item:hover {
   background: rgba(42, 52, 71, 0.9) !important;
-  border-color: rgba(6, 147, 227, 0.2) !important;
+  border-color: rgba(0, 136, 255, 0.2) !important;
   box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.08) !important;
   transform: scale(1.02) !important;
 }
@@ -211,7 +211,7 @@ h1, h2, h3 {
 .pagination a, .pagination span {
   padding: 0.4em 1em !important;
   border-radius: 3px !important;
-  border: 1px solid rgba(6, 147, 227, 0.12) !important;
+  border: 1px solid rgba(0, 136, 255, 0.12) !important;
   background: rgba(42, 52, 71, 0.7) !important;
   color: #f0f0f0 !important;
   transition: all 0.2s ease !important;
@@ -220,17 +220,17 @@ h1, h2, h3 {
 }
 
 .pagination a:hover {
-  background: rgba(6, 147, 227, 0.1) !important;
-  border-color: #0693e3 !important;
-  color: #0866ff !important;
+  background: rgba(0, 136, 255, 0.1) !important;
+  border-color: #0088ff !important;
+  color: #0088ff !important;
   transform: scale(1.05) !important;
-  box-shadow: 0px 5px 15px -7px rgba(6, 147, 227, 0.2) !important;
+  box-shadow: 0px 5px 15px -7px rgba(0, 136, 255, 0.2) !important;
 }
 
 .pagination span.current, .pagination a.active {
-  background: linear-gradient(135deg, #0693e3, #0866ff) !important;
+  background: linear-gradient(135deg, #ff6b3d, #ff8855) !important;
   color: white !important;
-  border-color: #0693e3 !important;
+  border-color: #ff6b3d !important;
   font-weight: 600 !important;
   box-shadow: 0px 15px 25px -7px rgba(253, 183, 26, 0.2) !important;
 }
@@ -238,23 +238,23 @@ h1, h2, h3 {
 /* Detail View */
 .detail-header {
   padding: 1.25rem 2.375rem !important;
-  background: linear-gradient(90deg, rgba(6, 147, 227, 0.08), rgba(6, 147, 227, 0.08)) !important;
+  background: linear-gradient(90deg, rgba(0, 136, 255, 0.08), rgba(0, 136, 255, 0.08)) !important;
   border-radius: 3px !important;
-  border-bottom: 2px solid rgba(6, 147, 227, 0.2) !important;
+  border-bottom: 2px solid rgba(0, 136, 255, 0.2) !important;
   margin-bottom: 2rem !important;
   box-shadow: 0px 15px 25px -10px rgba(0, 0, 0, 0.03) !important;
 }
 
 .detail-title {
-  color: #0866ff !important;
+  color: #0088ff !important;
   margin: 0 0 0.5rem 0 !important;
   letter-spacing: 0.5px !important;
 }
 
 .btn-back {
-  background: rgba(6, 147, 227, 0.12) !important;
-  border: 1px solid rgba(6, 147, 227, 0.3) !important;
-  color: #0693e3 !important;
+  background: rgba(0, 136, 255, 0.12) !important;
+  border: 1px solid rgba(0, 136, 255, 0.3) !important;
+  color: #0088ff !important;
   border-radius: 3px !important;
   padding: 0.4em 1em !important;
   cursor: pointer !important;
@@ -264,16 +264,16 @@ h1, h2, h3 {
 }
 
 .btn-back:hover {
-  background: linear-gradient(135deg, #0693e3, #0866ff) !important;
+  background: linear-gradient(135deg, #0088ff, #00b0ff) !important;
   color: white !important;
-  box-shadow: 0px 15px 25px -7px rgba(6, 147, 227, 0.2) !important;
+  box-shadow: 0px 15px 25px -7px rgba(0, 136, 255, 0.2) !important;
   transform: scale(1.02) !important;
 }
 
 /* Meta Info Boxes */
 .meta-info {
   background: rgba(61, 79, 99, 0.4) !important;
-  border-left: 3px solid #0693e3 !important;
+  border-left: 3px solid #0088ff !important;
   padding: 1rem 1.5rem !important;
   border-radius: 3px !important;
   margin: 1rem 0 !important;
@@ -283,7 +283,7 @@ h1, h2, h3 {
 /* Post item */
 .post-item {
   background: rgba(26, 35, 50, 0.7) !important;
-  border: 1px solid rgba(6, 147, 227, 0.08) !important;
+  border: 1px solid rgba(0, 136, 255, 0.08) !important;
   border-radius: 3px !important;
   padding: 1.25rem 2.375rem !important;
   margin: 1rem 0 !important;
@@ -308,7 +308,7 @@ h1, h2, h3 {
 hr {
   border: none !important;
   height: 1px !important;
-  background: linear-gradient(90deg, transparent, rgba(6, 147, 227, 0.1), transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 136, 255, 0.1), transparent) !important;
   margin: 2rem 0 !important;
 }
 
@@ -345,6 +345,6 @@ a:hover {
 
 /* Focus states - Accessibility */
 *:focus {
-  outline: 2px solid #0693e3 !important;
+  outline: 2px solid #0088ff !important;
   outline-offset: 2px !important;
 }
