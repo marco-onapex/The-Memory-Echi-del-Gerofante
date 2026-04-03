@@ -86,88 +86,119 @@ h1 {
 
 /* ═══════════════════════════════════════════════════════════════════════
    ENHANCED INTEGRATION - MIRACLE GAMING ZONE STYLING
+   Deep analysis of their design system - matching spacing, shadows, typography
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Spacing & Layout */
+/* RESPONSIVE TYPOGRAPHY - Using clamp() like their system */
+.filter-label {
+  font-size: clamp(0.85rem, 0.73rem + 0.217vw, 0.95rem) !important;
+}
+
+.info-panel > * {
+  font-size: clamp(0.95rem, 0.85rem + 0.217vw, 1.05rem) !important;
+}
+
+.detail-title {
+  font-size: clamp(1.75rem, 1.576rem + 0.543vw, 2rem) !important;
+}
+
+h1, h2, h3 {
+  font-size: clamp(2rem, 1.6rem + 1vw, 2.5rem) !important;
+}
+
+/* Spacing & Layout - Generous like their site */
 .filters-bar {
-  border-radius: 8px !important;
-  padding: 2rem 2.5rem !important;
+  border-radius: 3px !important;
+  padding: 1.5rem 2.375rem !important;
   margin-bottom: 2.5rem !important;
   background: linear-gradient(135deg, rgba(42, 52, 71, 0.95), rgba(61, 79, 99, 0.95)) !important;
+  box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.08) !important;
 }
 
 .form-input, .premium-input, .premium-date {
-  border-radius: 6px !important;
-  border: 2px solid rgba(253, 183, 26, 0.2) !important;
-  padding: 0.75rem 1rem !important;
-  background: rgba(26, 35, 50, 0.8) !important;
-  transition: all 0.3s ease-out !important;
+  border-radius: 3px !important;
+  border: 1px solid rgba(253, 183, 26, 0.18) !important;
+  padding: 0.4em 0.5em !important;
+  background: rgba(26, 35, 50, 0.9) !important;
+  transition: all 0.2s ease !important;
+  font-size: clamp(0.9rem, 0.8rem + 0.217vw, 1rem) !important;
+  line-height: 1.6 !important;
+  color: #f0f0f0 !important;
 }
 
 .form-input:focus, .premium-input:focus, .premium-date:focus {
-  border-color: #FDB71A !important;
-  box-shadow: 0 0 8px rgba(253, 183, 26, 0.3) !important;
-  background: rgba(26, 35, 50, 0.95) !important;
+  border-color: rgba(253, 183, 26, 0.4) !important;
+  color: #FDB71A !important;
+  box-shadow: 0px 5px 15px -7px rgba(253, 183, 26, 0.2) !important;
+  background: rgba(26, 35, 50, 1) !important;
 }
 
-/* Buttons - Miracle Gaming Zone style (blue gradient) */
+/* Buttons - Miracle Gaming Zone exact style */
 .btn-search, .btn-premium {
   background: linear-gradient(135deg, #0693e3, #0866ff) !important;
   border: none !important;
-  border-radius: 6px !important;
-  padding: 0.75rem 1.5rem !important;
+  border-radius: 3px !important;
+  padding: 0.4em 1em !important;
   color: white !important;
   font-weight: 600 !important;
+  font-size: 1.125rem !important;
   cursor: pointer !important;
-  transition: all 0.3s ease-out !important;
-  box-shadow: 0 4px 12px rgba(6, 147, 227, 0.3) !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.05) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  line-height: 1.6 !important;
 }
 
 .btn-search:hover, .btn-premium:hover {
   background: linear-gradient(135deg, #0866ff, #0757fe) !important;
-  box-shadow: 0 6px 16px rgba(6, 147, 227, 0.5) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.1) !important;
+  transform: scale(1.02) !important;
 }
 
-/* Info Panel - Enhanced styling */
+/* Info Panel - Enhanced styling (entry card style) */
 .info-panel {
-  background: rgba(42, 52, 71, 0.6) !important;
-  border-radius: 8px !important;
-  padding: 2rem !important;
-  border: 1px solid rgba(253, 183, 26, 0.15) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  background: rgba(42, 52, 71, 0.7) !important;
+  border-radius: 3px !important;
+  padding: 1.25rem 2.375rem !important;
+  border: none !important;
+  box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.05) !important;
 }
 
 /* Stats Bar */
 .stats-bar {
-  padding: 1.5rem !important;
-  background: rgba(61, 79, 99, 0.5) !important;
-  border-radius: 6px !important;
+  padding: 1.25rem 2.375rem !important;
+  background: rgba(26, 35, 50, 0.5) !important;
+  border-radius: 3px !important;
   border-left: 4px solid #FDB71A !important;
   margin-bottom: 1.5rem !important;
-  font-size: 0.95rem !important;
+  font-size: clamp(0.9rem, 0.8rem + 0.217vw, 1rem) !important;
   line-height: 1.6 !important;
+  box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.03) !important;
 }
 
 /* Thread List */
 .thread-list {
-  gap: 1rem !important;
+  gap: 0.75rem !important;
 }
 
 .thread-item {
-  background: rgba(26, 35, 50, 0.7) !important;
-  border-radius: 6px !important;
-  border: 1px solid rgba(253, 183, 26, 0.12) !important;
-  padding: 1.5rem !important;
-  transition: all 0.3s ease-out !important;
+  background: rgba(26, 35, 50, 0.8) !important;
+  border-radius: 3px !important;
+  border: 1px solid rgba(253, 183, 26, 0.1) !important;
+  padding: 1.25rem 2.375rem !important;
+  transition: all 0.2s ease !important;
   cursor: pointer !important;
+  box-shadow: 0px 15px 25px -10px rgba(0, 0, 0, 0.05) !important;
 }
 
 .thread-item:hover {
-  background: rgba(42, 52, 71, 0.85) !important;
+  background: rgba(42, 52, 71, 0.9) !important;
   border-color: rgba(253, 183, 26, 0.25) !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), inset 0 0 1px rgba(253, 183, 26, 0.2) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.08) !important;
+  transform: scale(1.02) !important;
 }
 
 /* Pagination */
@@ -180,58 +211,65 @@ h1 {
 }
 
 .pagination a, .pagination span {
-  padding: 0.6rem 0.9rem !important;
-  border-radius: 4px !important;
+  padding: 0.4em 1em !important;
+  border-radius: 3px !important;
   border: 1px solid rgba(253, 183, 26, 0.15) !important;
-  background: rgba(42, 52, 71, 0.6) !important;
+  background: rgba(42, 52, 71, 0.7) !important;
   color: #f0f0f0 !important;
-  transition: all 0.25s ease-out !important;
-  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+  font-size: clamp(0.85rem, 0.73rem + 0.217vw, 0.95rem) !important;
+  line-height: 1.6 !important;
 }
 
 .pagination a:hover {
-  background: linear-gradient(135deg, rgba(253, 183, 26, 0.2), rgba(6, 147, 227, 0.2)) !important;
+  background: rgba(253, 183, 26, 0.1) !important;
   border-color: #FDB71A !important;
   color: #FDB71A !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0px 5px 15px -7px rgba(253, 183, 26, 0.2) !important;
 }
 
 .pagination span.current, .pagination a.active {
-  background: #FDB71A !important;
+  background: linear-gradient(135deg, #FDB71A, #FFD54F) !important;
   color: #1a2332 !important;
   border-color: #FDB71A !important;
   font-weight: 600 !important;
+  box-shadow: 0px 15px 25px -7px rgba(253, 183, 26, 0.2) !important;
 }
 
 /* Detail View */
 .detail-header {
-  padding: 2rem !important;
+  padding: 1.25rem 2.375rem !important;
   background: linear-gradient(90deg, rgba(253, 183, 26, 0.08), rgba(6, 147, 227, 0.08)) !important;
-  border-radius: 8px !important;
+  border-radius: 3px !important;
   border-bottom: 2px solid rgba(253, 183, 26, 0.2) !important;
   margin-bottom: 2rem !important;
+  box-shadow: 0px 15px 25px -10px rgba(0, 0, 0, 0.03) !important;
 }
 
 .detail-title {
-  color: #FDB71A !important;
-  font-size: 1.75rem !important;
+  color: #FFD54F !important;
   margin: 0 0 0.5rem 0 !important;
+  letter-spacing: 0.5px !important;
 }
 
 .btn-back {
-  background: rgba(6, 147, 227, 0.15) !important;
+  background: rgba(6, 147, 227, 0.12) !important;
   border: 1px solid rgba(6, 147, 227, 0.3) !important;
   color: #0693e3 !important;
-  border-radius: 6px !important;
-  padding: 0.6rem 1.2rem !important;
+  border-radius: 3px !important;
+  padding: 0.4em 1em !important;
   cursor: pointer !important;
-  transition: all 0.3s ease-out !important;
+  transition: all 0.2s ease !important;
   font-weight: 600 !important;
+  font-size: 1.125rem !important;
 }
 
 .btn-back:hover {
-  background: #0693e3 !important;
+  background: linear-gradient(135deg, #0693e3, #0866ff) !important;
   color: white !important;
-  box-shadow: 0 4px 12px rgba(6, 147, 227, 0.4) !important;
+  box-shadow: 0px 15px 25px -7px rgba(6, 147, 227, 0.2) !important;
+  transform: scale(1.02) !important;
 }
 
 /* Meta Info Boxes */
@@ -239,41 +277,76 @@ h1 {
   background: rgba(61, 79, 99, 0.4) !important;
   border-left: 3px solid #FDB71A !important;
   padding: 1rem 1.5rem !important;
-  border-radius: 4px !important;
+  border-radius: 3px !important;
   margin: 1rem 0 !important;
+  box-shadow: 0px 5px 15px -7px rgba(0, 0, 0, 0.05) !important;
 }
 
 /* Post item */
 .post-item {
-  background: rgba(26, 35, 50, 0.6) !important;
-  border: 1px solid rgba(253, 183, 26, 0.1) !important;
-  border-radius: 6px !important;
-  padding: 1.5rem !important;
+  background: rgba(26, 35, 50, 0.7) !important;
+  border: 1px solid rgba(253, 183, 26, 0.08) !important;
+  border-radius: 3px !important;
+  padding: 1.25rem 2.375rem !important;
   margin: 1rem 0 !important;
   line-height: 1.7 !important;
+  box-shadow: 0px 15px 25px -10px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.2s ease !important;
+}
+
+.post-item:hover {
+  background: rgba(42, 52, 71, 0.8) !important;
+  border-color: rgba(253, 183, 26, 0.15) !important;
+  box-shadow: 0px 15px 25px -7px rgba(0, 0, 0, 0.05) !important;
 }
 
 /* Filter labels */
 .filter-label {
   color: #FFD54F !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
+  font-weight: 601 !important;
 }
 
 /* Separators */
 hr {
   border: none !important;
   height: 1px !important;
-  background: linear-gradient(90deg, transparent, rgba(253, 183, 26, 0.2), transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(253, 183, 26, 0.15), transparent) !important;
   margin: 2rem 0 !important;
 }
 
 /* Error message styling */
 .error-message {
-  background: rgba(239, 65, 85, 0.15) !important;
-  border-left: 4px solid #ef4155 !important;
-  border-radius: 6px !important;
+  background: rgba(239, 65, 85, 0.1) !important;
+  border-left: 3px solid #ef4155 !important;
+  border-radius: 3px !important;
   padding: 1rem 1.5rem !important;
   color: #ff9999 !important;
   margin: 1rem 0 !important;
+  font-size: clamp(0.9rem, 0.8rem + 0.217vw, 1rem) !important;
+  box-shadow: 0px 5px 15px -7px rgba(239, 65, 85, 0.1) !important;
+}
+
+/* Overall Typography Enhancement */
+body {
+  letter-spacing: 0.3px !important;
+}
+
+.detail-posts {
+  font-size: clamp(0.95rem, 0.85rem + 0.217vw, 1.05rem) !important;
+}
+
+/* Link styling */
+a {
+  color: #0693e3 !important;
+  transition: all 0.2s ease !important;
+}
+
+a:hover {
+  color: #FDB71A !important;
+}
+
+/* Focus states - Accessibility */
+*:focus {
+  outline: 2px solid #0693e3 !important;
+  outline-offset: 2px !important;
 }
