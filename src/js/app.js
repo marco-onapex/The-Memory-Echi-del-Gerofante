@@ -6,7 +6,7 @@
 import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';
-import { loadArchives, getCurrentYearFilter, filterByYear } from './archives.js';
+import { initApp, setupEventListeners } from './app.js';
 import { router } from './router.js';
 
 let supabaseClient = null;
@@ -21,9 +21,6 @@ export async function initApp(config) {
     
     // Testa connessione
     await testConnection();
-    
-    // Carica gli archivi nella sidebar
-    await loadArchives(supabaseClient);
     
     // Ripristina la view dall'URL (se presente)
     router.restoreFromUrl();
@@ -110,7 +107,6 @@ export function setupEventListeners() {
 // Esponi funzioni globali per HTML onclick
 window.search = search;
 window.goToPage = goToPage;
-window.filterByYear = filterByYear;
 window.openThread = (threadId, threadName) => {
   // Wrapper per retrocompatibilità - redirige a router
   if (typeof window.router !== 'undefined') {

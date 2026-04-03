@@ -197,14 +197,7 @@
   <div class="main-layout">
     <!-- SIDEBAR (COLLASSABILE) -->
     <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">📚 Archivi</h3>
-          <ul class="sidebar-list" id="archives-list">
-            <li><a href="#" onclick="window.filterByYear('all'); document.querySelector('.sidebar').classList.remove('active');" class="sidebar-link active">Tutti i periodi</a></li>
-          </ul>
-        </div>
-      </nav>
+      <!-- Archivi rimossi - non più utilizzati -->
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -365,10 +358,6 @@
       page: params.page || 1,
       ...params
     });
-  };
-
-  window.filterByYear = async (year) => {
-    window.search({ year });
   };
 </script>
 

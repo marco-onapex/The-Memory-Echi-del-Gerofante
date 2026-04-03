@@ -70,14 +70,6 @@ export async function searchThreads(supabase, filters = {}) {
       query = query.lte('last_post_at', dateTo + 'T23:59:59');
     }
 
-    // Year filter (archive) - SOLO se esplicitamente richiesto dall'utente
-    // Non applicare al caricamento iniziale
-    if (filters.year && keyword === '' && author === '' && dateFrom === '' && dateTo === '') {
-      const yearStart = `${filters.year}-01-01T00:00:00`;
-      const yearEnd = `${filters.year}-12-31T23:59:59`;
-      query = query.gte('first_post_at', yearStart).lte('first_post_at', yearEnd);
-    }
-
     // Ordering and pagination
     // ✅ L'ordinamento è già gestito dalla MATERIALIZED VIEW (ORDER BY last_post_at DESC)
     // Usa .range() per paginazione SERVER-SIDE (carica solo la pagina richiesta)
