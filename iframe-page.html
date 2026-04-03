@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Memory: Echi del Gerofante - Archivio perduto del forum GDR" />
+  <meta name="theme-color" content="#D4AF37" />
+  
+  <title>Archivio GDR - The Memory</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./src/css/style.css" />
+  
+  <!-- iFrame-specific styles -->
+  <style>
+    /* Ottimizzazione per iframe */
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--stone-bg);
+    }
+
+    /* Nascondi header */
+    header {
+      display: none;
+    }
+
+    /* Sidebar compatto per iframe */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      background: transparent;
+      border: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease-out;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      width: 200px;
+      opacity: 1;
+      pointer-events: auto;
+      background: var(--stone-light);
+      border-right: 1px solid var(--border-light);
+      padding: var(--spacing-md);
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-content {
+      width: 100%;
+      padding: var(--spacing-md);
+      gap: var(--spacing-md);
+    }
+
+    /* Pulsante toggle sidebar */
+    .sidebar-toggle {
+      position: fixed;
+      top: var(--spacing-md);
+      left: var(--spacing-md);
+      z-index: 999;
+      background: var(--gold-primary);
+      color: var(--ink);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all var(--transition);
+    }
+
+    .sidebar-toggle:hover {
+      background: var(--gold-light);
+      transform: scale(1.05);
+    }
+
+    .sidebar.active ~ .main-content {
+      margin-left: 200px;
+    }
+
+    /* Riduci container */
+    .container {
+      padding: 0;
+      max-width: 100%;
+    }
+
+    .filters-bar {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .filter-group {
+      flex: 1 1 auto !important;
+      min-width: auto !important;
+    }
+
+    .btn-search {
+      width: 100%;
+      align-self: auto;
+    }
+
+    /* Mobile-first per iframe */
+    @media (max-width: 768px) {
+      .sidebar.active {
+        width: 100%;
+      }
+
+      .sidebar.active ~ .main-content {
+        margin-left: 0;
+      }
+
+      .filters-bar {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-sm);
+      }
+    }
+
+    /* Info panel compatto */
+    .info-panel {
+      padding: var(--spacing-md);
+      gap: var(--spacing-md);
+    }
+
+    .stats-bar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      font-size: var(--font-sm);
+    }
+
+    /* Thread list più compatto */
+    .thread-list {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .thread-item {
+      padding: var(--spacing-md);
+    }
+
+    /* Pagination compatta */
+    .pagination {
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+
+    .pagination button {
+      padding: var(--spacing-xs) var(--spacing-sm) !important;
+      font-size: var(--font-xs) !important;
+    }
+
+    /* Comunicazione con parent iframe */
+    .iframe-footer {
+      text-align: center;
+      padding: var(--spacing-md);
+      border-top: 1px solid var(--border-light);
+      opacity: 0.7;
+      font-size: var(--font-xs);
+      background: var(--stone-light);
+    }
+
+    .iframe-footer a {
+      color: var(--gold-light);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .iframe-footer a:hover {
+      color: var(--gold-primary);
+      text-decoration: underline;
+    }
+  </style>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- Pulsante Toggle Sidebar (solo iframe) -->
+<button class="sidebar-toggle" id="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active')">
+  ☰ Archivi
+</button>
+
+<!-- MAIN -->
+<div class="container visible" id="container">
+  <div class="main-layout">
+    <!-- SIDEBAR (COLLASSABILE) -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">📚 Archivi</h3>
+          <ul class="sidebar-list" id="archives-list">
+            <li><a href="#" onclick="window.filterByYear('all'); document.querySelector('.sidebar').classList.remove('active');" class="sidebar-link active">Tutti i periodi</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- LIST VIEW (Thread search & results) -->
+      <div id="list-view" class="view-panel visible">
+        <!-- Filters -->
+        <div class="filters-bar">
+          <div class="filter-group" style="flex:1 1 auto;">
+            <label class="filter-label">🔍 Ricerca</label>
+            <input 
+              id="f-keyword" 
+              type="text" 
+              placeholder="Parola chiave..."
+              class="form-input premium-input"
+            />
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">✍ Autore</label>
+            <input 
+              id="f-author" 
+              type="text" 
+              placeholder="Autore..."
+              class="form-input premium-input"
+            />
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">📅 Dal</label>
+            <input 
+              id="f-date-from" 
+              type="date"
+              class="form-input premium-input premium-date"
+            />
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">📅 Al</label>
+            <input 
+              id="f-date-to" 
+              type="date"
+              class="form-input premium-input premium-date"
+            />
+          </div>
+          
+          <button class="btn-search btn-premium" onclick="window.search()">
+            🔍 Cerca
+          </button>
+        </div>
+
+        <!-- UNIFIED INFO PANEL -->
+        <div class="info-panel">
+          <!-- Stats -->
+          <div class="stats-bar">
+            <span id="stats-txt"></span>
+            <div id="pagination-top" class="pagination"></div>
+          </div>
+
+          <!-- Error Box -->
+          <div id="error-box" class="error-message" style="display:none;"></div>
+
+          <!-- Thread List -->
+          <div id="thread-list" class="thread-list">
+            <div class="empty">Caricamento...</div>
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination" class="pagination"></div>
+        </div>
+      </div>
+
+      <!-- DETAIL VIEW (Thread detail panel) -->
+      <div id="detail-view" class="view-panel hidden">
+        <!-- Back button & Title -->
+        <div class="detail-header">
+          <button class="btn-back" onclick="window.router.back()" title="Torna alla lista">← Indietro</button>
+          <h2 class="detail-title" id="detail-title"></h2>
+        </div>
+
+        <!-- Thread metadata -->
+        <div id="detail-meta"></div>
+        
+        <!-- Posts -->
+        <div id="detail-posts" class="detail-posts"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Footer iframe con link esterno -->
+<footer class="iframe-footer">
+  <a href="https://marco-onapex.github.io/The-Memory-Echi-del-Gerofante" target="_blank" rel="noopener">
+    📖 Versione Completa
+  </a>
+</footer>
+
+<!-- Main App Script -->
+<script type="module">
+  import { initApp, setupEventListeners } from './src/js/app.js';
+  import { router } from './src/js/router.js';
+  import { loadConfig } from './src/config-loader.js';
+
+  (async () => {
+    try {
+      // Carica la configurazione
+      const config = await loadConfig();
+      
+      // Esponi router globalmente PRIMA di initApp
+      window.router = router;
+      
+      // Inizializza app
+      await initApp(config.supabase);
+      
+      // Setup event listeners
+      setupEventListeners(config.supabase);
+
+      // Auto-resize iframe quando il contenuto cambia
+      const resizeIframe = () => {
+        if (window.parent !== window) {
+          const height = document.documentElement.scrollHeight + 20;
+          window.parent.postMessage({ type: 'resize', height }, '*');
+        }
+      };
+
+      // Observer per rilevare cambiamenti nel DOM
+      const observer = new MutationObserver(resizeIframe);
+      observer.observe(document.body, { 
+        childList: true, 
+        subtree: true, 
+        characterData: false 
+      });
+
+      // Resize iniziale
+      setTimeout(resizeIframe, 100);
+
+      // Resize a intervalli per sicurezza
+      setInterval(resizeIframe, 500);
+
+    } catch (err) {
+      console.error('Init error:', err);
+      const el = document.getElementById('error-box');
+      if (el) {
+        el.textContent = 'Errore durante l\'inizializzazione: ' + err.message;
+        el.style.display = 'block';
+      }
+    }
+  })();
+
+  // Globalizza funzioni necessarie
+  window.search = async (params = {}, updateUrl = true) => {
+    const { searchThreads } = await import('./src/js/search.js');
+    searchThreads(window.supabaseClient, {
+      keyword: document.getElementById('f-keyword')?.value.trim() || '',
+      author: document.getElementById('f-author')?.value.trim() || '',
+      dateFrom: document.getElementById('f-date-from')?.value || '',
+      dateTo: document.getElementById('f-date-to')?.value || '',
+      page: params.page || 1,
+      ...params
+    });
+  };
+
+  window.filterByYear = async (year) => {
+    window.search({ year });
+  };
+</script>
+
+</body>
+</html>
