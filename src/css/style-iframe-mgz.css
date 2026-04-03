@@ -51,6 +51,18 @@ body {
   background: transparent !important;
 }
 
+/* Full viewport sizing - no scrollbars */
+html, body, .container, .main-layout, .main-content {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.view-panel {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: auto !important;
+}
+
 /* Update header shadow for blue theme */
 header {
   box-shadow: 
