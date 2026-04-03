@@ -518,19 +518,22 @@ premium-button[size="md"] {
 .premium-date::-webkit-calendar-picker-indicator {
   cursor: pointer;
   border-radius: 4px;
-  background: rgba(232, 199, 75, 0.18);
+  background: rgba(212, 175, 55, 0.45);
+  filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
   transition: all var(--transition-lg);
   padding: var(--spacing-xs);
 }
 
 .premium-date:hover::-webkit-calendar-picker-indicator {
-  background: rgba(232, 199, 75, 0.35);
-  transform: scale(1.05);
+  background: rgba(232, 199, 75, 0.6);
+  filter: drop-shadow(0 0 4px rgba(232, 199, 75, 0.5));
+  transform: scale(1.1);
 }
 
 .premium-date:focus::-webkit-calendar-picker-indicator {
-  background: rgba(232, 199, 75, 0.6);
-  transform: scale(1.1);
+  background: rgba(232, 199, 75, 0.85);
+  filter: drop-shadow(0 0 6px rgba(232, 199, 75, 0.6));
+  transform: scale(1.15);
 }
 
 /* ──────────────────────────────────────────────────────────────────────【 PREMIUM BUTTON STYLING 】─ */
