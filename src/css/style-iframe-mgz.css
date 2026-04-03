@@ -46,12 +46,9 @@
   --shadow-glow:     0 0 12px rgba(74, 158, 255, 0.15); /* Blue glow */
 }
 
-/* Update background gradients for pure blue theme */
+/* Transparent background for iframe integration */
 body {
-  background-image:
-    radial-gradient(ellipse at 20% 10%, rgba(74, 158, 255, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(74, 158, 255, 0.04) 0%, transparent 55%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.01'/%3E%3C/svg%3E") !important;
+  background: transparent !important;
 }
 
 /* Update header shadow for blue theme */
