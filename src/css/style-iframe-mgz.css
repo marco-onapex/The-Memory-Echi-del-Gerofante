@@ -80,10 +80,18 @@ h1 {
     0 2px 4px rgba(0,0,0,0.6) !important;
 }
 
-/* Update filters bar shadow for blue theme */\n.filters-bar {\n  box-shadow: \n    0 8px 24px rgba(0, 0, 0, 0.4),\n    inset 0 1px 0 rgba(74, 158, 255, 0.12) !important;\n  border-top-left-radius: 15px !important;\n  border-top-right-radius: 15px !important;\n  border-bottom-right-radius: 15px !important;\n  border-bottom-left-radius: 15px !important;\n}
+/* Update filters bar shadow for blue theme */
+.filters-bar {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
+  border: none !important;
+}
 
 .filters-bar::before {
-  background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.15), transparent) !important;
+  display: none !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -118,6 +126,7 @@ h1, h2, h3 {
   margin-bottom: 2.5rem !important;
   background: linear-gradient(135deg, rgba(42, 52, 71, 0.95), rgba(61, 79, 99, 0.95)) !important;
   box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.08) !important;
+  border: none !important;
 }
 
 .form-input, .premium-input, .premium-date {
@@ -593,6 +602,7 @@ th {
   border-top-right-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
   border-bottom-left-radius: 15px !important;
+  border: none !important;
 }
 
 /* Typography Refinement */
