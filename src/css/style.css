@@ -513,27 +513,29 @@ premium-button[size="md"] {
 
 .premium-date {
   cursor: pointer;
+  position: relative;
 }
 
 .premium-date::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  border-radius: 4px;
-  background: rgba(212, 175, 55, 0.45);
-  filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+  filter: brightness(0) saturate(100%) invert(79%) sepia(25%) saturate(485%) hue-rotate(8deg) brightness(96%) contrast(92%);
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  opacity: 0.9;
   transition: all var(--transition-lg);
-  padding: var(--spacing-xs);
 }
 
 .premium-date:hover::-webkit-calendar-picker-indicator {
-  background: rgba(232, 199, 75, 0.6);
-  filter: drop-shadow(0 0 4px rgba(232, 199, 75, 0.5));
-  transform: scale(1.1);
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(87%) sepia(30%) saturate(600%) hue-rotate(8deg) brightness(105%) contrast(100%);
+  transform: scale(1.15);
 }
 
 .premium-date:focus::-webkit-calendar-picker-indicator {
-  background: rgba(232, 199, 75, 0.85);
-  filter: drop-shadow(0 0 6px rgba(232, 199, 75, 0.6));
-  transform: scale(1.15);
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(90%) sepia(40%) saturate(700%) hue-rotate(8deg) brightness(110%) contrast(105%);
+  transform: scale(1.2);
 }
 
 /* ──────────────────────────────────────────────────────────────────────【 PREMIUM BUTTON STYLING 】─ */
