@@ -1,0 +1,85 @@
+/**
+ * Forum Selector Styles - Tab-style Subforum Selector
+ */
+
+/* Container */
+.subforum-selector {
+  padding: 20px 0;
+}
+
+/* Tabs container */
+.subforum-tabs {
+  display: flex;
+  gap: 15px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+/* Tab button */
+.subforum-tab {
+  padding: 10px 16px;
+  background: transparent;
+  border: 2px solid var(--forum-color, #D4AF37);
+  color: var(--forum-color, #D4AF37);
+  font-family: 'Cinzel', serif;
+  font-size: 0.95em;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Tab hover state */
+.subforum-tab:hover:not(.active) {
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+}
+
+/* Tab active state */
+.subforum-tab.active {
+  background: rgba(212, 175, 55, 0.2);
+  color: white;
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.4), inset 0 0 12px rgba(212, 175, 55, 0.1);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Tab icon */
+.subforum-tab::before {
+  content: attr(data-icon);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .subforum-tabs {
+    padding: 0 15px;
+    gap: 10px;
+  }
+
+  .subforum-tab {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  .subforum-selector {
+    padding: 15px 0;
+  }
+
+  .subforum-tabs {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .subforum-tab {
+    padding: 6px 10px;
+    font-size: 0.8em;
+    gap: 4px;
+  }
+}
+

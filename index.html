@@ -13,6 +13,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="./src/css/style.css" />
+  <link rel="stylesheet" href="./src/css/forum-selector.css" />
 
   <!-- Supabase SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -39,6 +40,13 @@
     <main class="main-content">
       <!-- LIST VIEW (Thread search & results) -->
       <div id="list-view" class="view-panel visible">
+        <!-- SUBFORUM SELECTOR -->
+        <div class="subforum-selector">
+          <div class="subforum-tabs" id="forum-tabs">
+            <!-- Tabs generati dinamicamente -->
+          </div>
+        </div>
+
         <!-- Filters -->
         <div class="filters-bar">
           <div class="filter-group" style="flex:2 1 260px;">

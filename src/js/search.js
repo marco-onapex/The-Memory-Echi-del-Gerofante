@@ -5,6 +5,7 @@
 import { showError, hideError, showLoading } from './utils.js';
 import { renderThreads, renderPagination, renderStats, setTotalCount, PAGE_SIZE } from './ui.js';
 import { router } from './router.js';
+import { getSelectedForum, FORUMS } from './forum-selector.js';
 
 /**
  * Ricerca thread con filtri multipli su Supabase.
@@ -32,11 +33,18 @@ export async function searchThreads(supabase, filters = {}) {
     // Senza count per evitare problemi con la libreria Supabase
     let query = supabase.from('threads_view').select('*', { count: 'exact' });
 
+    // 🔹 FORUM FILTER - Solo il forum selezionato
+    const selectedForum = getSelectedForum();
+    query = query.eq('source', selectedForum);
+
     // Keyword search (case-insensitive) on thread name AND post content
     if (keyword) {
+      // Determina quale tabella usare in base al forum selezionato
+      const postsTable = selectedForum === FORUMS.CRONACHE ? 'cronache_posts' : 'posts';
+      
       // Ricerca parallela nei post
       const { data: matchingPosts, error: postsError } = await supabase
-        .from('posts')
+        .from(postsTable)
         .select('thread_id')
         .ilike('content', `%${keyword}%`);
       

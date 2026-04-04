@@ -4,6 +4,7 @@
 
 import { escHtml, sanitizeHtml, formatDate } from './utils.js';
 import { router } from './router.js';
+import { getSelectedForum, FORUMS, FORUM_INFO } from './forum-selector.js';
 
 // Global state
 export const PAGE_SIZE = 25;
@@ -115,8 +116,13 @@ export async function renderThreadDetail(threadId, supabase) {
 
     // Carica tutti i messaggi del thread
     console.log('🔄 Caricamento messaggi...');
+    
+    // Determina quale tabella usare in base al forum selezionato
+    const selectedForum = getSelectedForum();
+    const postsTable = selectedForum === FORUMS.CRONACHE ? 'cronache_posts' : 'posts';
+    
     const { data: postsData, error: postsError } = await supabase
-      .from('posts')
+      .from(postsTable)
       .select('*')
       .eq('thread_id', threadId)
       .order('posted_at', { ascending: true });
@@ -242,7 +248,10 @@ export function renderStats() {
   const el = document.getElementById('stats-txt');
   if (!el) return;
 
-  el.innerHTML = `Trovati <strong>${totalCount.toLocaleString('it')}</strong> thread GDR`;
+  const selectedForum = getSelectedForum();
+  const forumName = FORUM_INFO[selectedForum]?.name || 'Forum';
+  
+  el.innerHTML = `Trovati <strong>${totalCount.toLocaleString('it')}</strong> thread in ${forumName}`;
 }
 
 /**

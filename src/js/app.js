@@ -7,6 +7,7 @@ import { initSupabase, getSupabase, testConnection } from './supabase.js';
 import { searchThreads, getFiltersFromUI } from './search.js';
 import { renderThreadDetail } from './ui.js';
 import { router } from './router.js';
+import { createForumTabs } from './forum-selector.js';
 
 let supabaseClient = null;
 
@@ -15,6 +16,9 @@ let supabaseClient = null;
  */
 export async function initApp(config) {
   try {
+    // Crea i tab dei forum
+    createForumTabs();
+    
     // Inizializza Supabase
     supabaseClient = initSupabase(config);
     
@@ -36,6 +40,19 @@ export async function initApp(config) {
     // Event listener per back/forward del browser
     window.addEventListener('popstate', (e) => {
       router.handlePopState(e);
+    });
+
+    // Event listener per cambio forum
+    window.addEventListener('forum-changed', async (e) => {
+      const { forum } = e.detail;
+      console.log('Forum changed to:', forum);
+      // Ripulisci i risultati attuali
+      const resultsList = document.getElementById('results-list');
+      if (resultsList) {
+        resultsList.innerHTML = '';
+      }
+      // Resetta pagina a 1 e ricarica
+      await search(1);
     });
   } catch (err) {
     console.error('❌ Init error:', err);
