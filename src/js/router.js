@@ -3,12 +3,15 @@
  * L'Orecchio del Gerofante
  */
 
+import { FORUMS, getSelectedForum, setSelectedForum } from './forum-selector.js';
+
 class Router {
   constructor() {
     this.currentView = 'list';
     this.routeStack = [];
     this.currentPage = 1;
     this.searchParams = {};
+    this.currentForum = getSelectedForum();
   }
 
   /**
@@ -22,6 +25,7 @@ class Router {
     
     // Costruisci query string con pagina e filtri attuali
     const params = new URLSearchParams();
+    params.set('forum', this.currentForum);
     params.set('page', page);
     
     // Aggiungi parametri di ricerca se presenti
@@ -34,7 +38,7 @@ class Router {
     
     // Aggiorna URL
     window.history.pushState(
-      { view: 'list', page, searchParams: this.searchParams },
+      { view: 'list', page, searchParams: this.searchParams, forum: this.currentForum },
       `Lista thread - Pagina ${page}`,
       url
     );
@@ -55,13 +59,16 @@ class Router {
       state: {}
     });
 
-    // Cambio view
-    this.switchView('detail', { threadId });
+    // Cambio view - PASSA ANCHE IL FORUM
+    this.switchView('detail', { threadId, forum: this.currentForum });
     
     // Aggiorna URL (senza reload)
-    const url = `?thread=${encodeURIComponent(threadId)}`;
+    const params = new URLSearchParams();
+    params.set('forum', this.currentForum);
+    params.set('thread', encodeURIComponent(threadId));
+    const url = `?${params.toString()}`;
     window.history.pushState(
-      { view: 'detail', threadId },
+      { view: 'detail', threadId, forum: this.currentForum },
       'Thread Detail',
       url
     );
@@ -76,20 +83,41 @@ class Router {
     this.switchView('list');
     
     // Aggiorna URL
+    const params = new URLSearchParams();
+    params.set('forum', this.currentForum);
+    if (this.currentPage > 1) params.set('page', this.currentPage);
+    if (this.searchParams.keyword) params.set('keyword', this.searchParams.keyword);
+    if (this.searchParams.author) params.set('author', this.searchParams.author);
+    if (this.searchParams.dateFrom) params.set('dateFrom', this.searchParams.dateFrom);
+    if (this.searchParams.dateTo) params.set('dateTo', this.searchParams.dateTo);
+    
+    const url = `?${params.toString()}`;
     window.history.pushState(
-      { view: 'list' },
+      { view: 'list', page: this.currentPage, searchParams: this.searchParams, forum: this.currentForum },
       'Lista thread',
-      '?'
+      url
     );
+    
+    // Riesegui la ricerca
+    window.search(this.currentPage);
   }
 
   /**
    * Gestisce il popstate (back button del browser)
    */
   handlePopState(event) {
+    // Ripristina il forum dalla history
+    if (event.state?.forum) {
+      this.setForum(event.state.forum);
+    }
+    
     if (event.state?.view === 'detail') {
+      // Quando torniamoal detail, assicurati che il forum sia sincronizzato
+      const threadId = event.state.threadId;
+      const forum = event.state.forum || this.currentForum;
       this.switchView('detail', {
-        threadId: event.state.threadId
+        threadId,
+        forum
       });
     } else if (event.state?.view === 'list') {
       // Ripristina pagina dalla history
@@ -143,11 +171,67 @@ class Router {
   }
 
   /**
+   * Imposta il forum corrente e sincronizza
+   */
+  setForum(forum) {
+    if (!Object.values(FORUMS).includes(forum)) {
+      console.error('Invalid forum:', forum);
+      return;
+    }
+    this.currentForum = forum;
+    setSelectedForum(forum);
+  }
+
+  /**
+   * Trova il forum di un thread cercandolo nel database
+   */
+  async findForumByThreadId(supabase, threadId) {
+    if (!supabase) return null;
+    
+    try {
+      console.log('🔍 Cercando forum per thread ID:', threadId);
+      
+      const { data, error } = await supabase
+        .from('threads_view')
+        .select('source')
+        .eq('id', threadId)
+        .single();
+      
+      if (error) {
+        console.error('❌ Errore ricerca thread:', error);
+        return null;
+      }
+      
+      if (data && data.source) {
+        console.log('✅ Forum trovato:', data.source);
+        return data.source;
+      }
+    } catch (err) {
+      console.error('❌ Errore cercando forum:', err);
+    }
+    
+    return null;
+  }
+
+  /**
    * Leggi lo stato URL attuale e ripristina la view
    */
-  restoreFromUrl() {
+  async restoreFromUrl(supabase) {
     const params = new URLSearchParams(window.location.search);
+    
+    let forumFromUrl = params.get('forum');
     const threadId = params.get('thread');
+    
+    // Se non c'è forum nell'URL ma c'è un threadId, deducilo dal database
+    if (!forumFromUrl && threadId) {
+      console.log('⏳ Forum non in URL, cercando da thread ID...');
+      forumFromUrl = await this.findForumByThreadId(supabase, threadId);
+    }
+    
+    // Ripristina il forum dal URL o dal thread, altrimenti di default
+    const forum = forumFromUrl || getSelectedForum();
+    this.setForum(forum);
+    
     const page = parseInt(params.get('page')) || 1;
 
     // Salva parametri di ricerca dal URL
@@ -162,9 +246,9 @@ class Router {
     if (threadId) {
       this.switchView('detail', { threadId });
       
-      // Trigger fetch diretto
+      // Trigger fetch diretto con il forum corrente
       const event = new CustomEvent('thread-detail-view', {
-        detail: { threadId }
+        detail: { threadId, forum: this.currentForum }
       });
       window.dispatchEvent(event);
     } else if (page > 1 || Object.values(this.searchParams).some(v => v)) {

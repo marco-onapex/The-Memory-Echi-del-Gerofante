@@ -98,7 +98,7 @@ export function updateTabsUI() {
 }
 
 /**
- * Seleziona un forum
+ * Seleziona un forum e aggiorna il router
  */
 function selectForum(forum) {
   setSelectedForum(forum);
@@ -110,7 +110,14 @@ function selectForum(forum) {
     resultsList.innerHTML = '<div class="loading">Caricamento...</div>';
   }
 
-  // Emetti evento per notificare il cambio
-  window.dispatchEvent(new CustomEvent('forum-changed', { detail: { forum } }));
+  // Sincronizza con il router e aggiorna URL
+  if (window.router) {
+    window.router.setForum(forum);
+    // Torna alla prima pagina con il nuovo forum
+    window.router.goToPage(1);
+  } else {
+    // Fallback: emetti evento se router non è disponibile
+    window.dispatchEvent(new CustomEvent('forum-changed', { detail: { forum } }));
+  }
 }
 

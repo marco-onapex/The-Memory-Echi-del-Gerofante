@@ -26,33 +26,23 @@ export async function initApp(config) {
     await testConnection();
     
     // Ripristina la view dall'URL (se presente)
-    router.restoreFromUrl();
+    // Passa supabaseClient per ricerche di forum su thread ID legacy
+    await router.restoreFromUrl(supabaseClient);
     
-    // Carica i dati iniziali
-    await search();
+    // Carica i dati iniziali SOLO se non stiamo visualizzando un thread
+    if (router.currentView !== 'detail') {
+      await search();
+    }
     
     // Event listener per caricare il detail thread quando richiesto
     window.addEventListener('thread-detail-view', (e) => {
-      const { threadId } = e.detail;
-      renderThreadDetail(threadId, supabaseClient);
+      const { threadId, forum } = e.detail;
+      renderThreadDetail(threadId, supabaseClient, forum);
     });
 
     // Event listener per back/forward del browser
     window.addEventListener('popstate', (e) => {
       router.handlePopState(e);
-    });
-
-    // Event listener per cambio forum
-    window.addEventListener('forum-changed', async (e) => {
-      const { forum } = e.detail;
-      console.log('Forum changed to:', forum);
-      // Ripulisci i risultati attuali
-      const resultsList = document.getElementById('results-list');
-      if (resultsList) {
-        resultsList.innerHTML = '';
-      }
-      // Resetta pagina a 1 e ricarica
-      await search(1);
     });
   } catch (err) {
     console.error('❌ Init error:', err);
@@ -85,6 +75,22 @@ export async function search(page = 1) {
     dateTo: filters.dateTo || ''
   };
 
+  // Aggiorna URL con i parametri di ricerca e il forum
+  const params = new URLSearchParams();
+  params.set('forum', router.currentForum);
+  if (page > 1) params.set('page', page);
+  if (filters.keyword) params.set('keyword', filters.keyword);
+  if (filters.author) params.set('author', filters.author);
+  if (filters.dateFrom) params.set('dateFrom', filters.dateFrom);
+  if (filters.dateTo) params.set('dateTo', filters.dateTo);
+
+  const url = `?${params.toString()}`;
+  window.history.replaceState(
+    { view: 'list', page, searchParams: router.searchParams, forum: router.currentForum },
+    'Lista thread',
+    url
+  );
+
   await searchThreads(supabaseClient, filters);
 }
 
@@ -114,9 +120,10 @@ export function setupEventListeners() {
   }
 }
 
-// Esponi funzioni globali per HTML onclick
+// Esponi funzioni e oggetti globali per HTML onclick
 window.search = search;
 window.goToPage = goToPage;
+window.router = router;
 window.openThread = (threadId, threadName) => {
   // Wrapper per retrocompatibilità - redirige a router
   if (typeof window.router !== 'undefined') {

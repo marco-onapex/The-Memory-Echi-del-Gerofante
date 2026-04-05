@@ -74,8 +74,9 @@ export function renderThreads(threads) {
  * Renderizza la pagina di dettaglio di un thread (carica il nome dal DB).
  * @param {number} threadId - ID del thread
  * @param {Object} supabase - Client Supabase
+ * @param {string} forum - Forum corrente (opzionale, di default da getSelectedForum())
  */
-export async function renderThreadDetail(threadId, supabase) {
+export async function renderThreadDetail(threadId, supabase, forum) {
   if (!supabase) {
     console.error('Supabase not initialized');
     return;
@@ -117,9 +118,11 @@ export async function renderThreadDetail(threadId, supabase) {
     // Carica tutti i messaggi del thread
     console.log('🔄 Caricamento messaggi...');
     
-    // Determina quale tabella usare in base al forum selezionato
-    const selectedForum = getSelectedForum();
+    // Determina quale tabella usare in base al forum (parametro o da localStorage)
+    const selectedForum = forum || getSelectedForum();
     const postsTable = selectedForum === FORUMS.CRONACHE ? 'cronache_posts' : 'posts';
+    
+    console.log('🎯 Loading posts from forum:', selectedForum, 'table:', postsTable);
     
     const { data: postsData, error: postsError } = await supabase
       .from(postsTable)
